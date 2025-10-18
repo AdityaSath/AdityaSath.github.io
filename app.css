@@ -1,0 +1,36 @@
+@keyframes lightspeed {
+	100% {
+		width: 100vh;
+	}
+}
+
+.center {
+	height: 1px;
+	width: 1px;
+	position: absolute;
+}
+
+body {
+	background-color: #111;
+	min-height: 100vh;
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+}
+
+.star {
+	border: 1px solid transparent;
+	border-radius: 50%;
+	border-top-color: #fff;
+	margin: 0;
+	position: absolute;
+	transform-origin: left;
+	width: 1px;
+}
+
+.star:nth-child(2n) {
+	animation-name: lightspeed;
+	animation-duration: 4s;
+	animation-delay: 2s;
+	animation-iteration-count: infinite;
+}
