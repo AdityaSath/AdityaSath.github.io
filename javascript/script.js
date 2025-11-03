@@ -230,13 +230,11 @@ function initWelcomeTextGlow() {
 document.addEventListener('DOMContentLoaded', initWelcomeTextGlow);
 
 // Typewriter animation for welcome text
-function initTypewriterEffect() {
+function initTypewriterEffect(firstPart, secondPart) {
 	const welcomeText = document.getElementById('welcomeText');
 	if (!welcomeText) return;
 	
 	const fullText = welcomeText.textContent;
-	const firstPart = "If you shoot for the Moon and miss...";
-	const secondPart = "You'll land among the stars";
 	
 	welcomeText.innerHTML = '';
 	
@@ -295,6 +293,10 @@ function initTypewriterEffect() {
 			setTimeout(() => {
 				typeSecondPart();
 			}, 500); // Brief pause before typing second part
+
+			setTimeout(() => {
+				typeJumpInstructions();
+			}, 500);
 		}
 	}
 	
@@ -328,5 +330,27 @@ function initTypewriterEffect() {
 	setTimeout(typeChar, 500);
 }
 
+moonQuoteFirstHalf = "If you shoot for the Moon and miss...";
+moonQuoteSecondHalf = "You'll land among the stars";
 // Initialize typewriter effect when DOM is loaded
-document.addEventListener('DOMContentLoaded', initTypewriterEffect);
+document.addEventListener('DOMContentLoaded', initTypewriterEffect(moonQuoteFirstHalf, moonQuoteSecondHalf));
+
+document.addEventListener('DOMContentLoaded', () => {
+	const stars = document.querySelectorAll('.star');
+  
+	// delay before lightspeed starts
+	setTimeout(() => {
+	  // Start animation
+	  stars.forEach(star => star.classList.add('traveling'));
+  
+	  // After animation + delay, reverse it
+	  setTimeout(() => {
+		stars.forEach(star => {
+		  star.classList.remove('traveling');
+		  star.classList.add('slowing');
+		});
+	  }, 3500); // (3s anim + 0.5s)
+	}, 2500);
+  });
+  
+  

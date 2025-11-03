@@ -1,0 +1,1 @@
+This folder contains variables for each page's background pictures

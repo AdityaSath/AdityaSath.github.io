@@ -185,13 +185,13 @@ body {
 	pointer-events: auto;
 	opacity: 0.95;
 	transition: all 0.2s ease;
-	max-width: 60vw;
+	max-width: 80vw;
 	width: 100%;
 	padding: 0 20px;
 }
 
 .welcome-text .char {
-	/* display: inline-block; */
+	display: inline-block;
 	transition: all 0.2s ease;
 }
 
@@ -215,10 +215,32 @@ body {
 	}
 }
 
+.light-jump{
+	position: fixed;
+	top: 95%;
+	left: 52%;
+	transform: translate(-50%, -50%);
+	font-size: clamp(10px, 3vw, 20px);
+	font-weight: 200;
+	font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+	color: #ffffff;
+	text-align: left;
+	z-index: 999;
+	letter-spacing: 0.5px;
+	/* text-shadow: 
+		0 2px 8px rgba(0, 0, 0, 0.3),
+		0 0 12px rgba(0, 136, 255, 0.2); */
+	pointer-events: auto;
+	opacity: 0.95;
+	transition: all 0.2s ease;
+	/* max-width: 60vw; */
+	width: 100%;
+}
+
 /* Page Content Styles */
 .page-content {
 	position: fixed;
-	top: 50%;
+	top: 10%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;

@@ -1,0 +1,35 @@
+Hey there, Traveler,
+
+My name is Aditya Sathishkumar -- Welcome to my Portfolio!
+
+I am a Software Engineer, Adventurist, and of course, Space Enthusiast
+
+I'm from Massachusetts, USA, and attend UMass Amherst for Computer Science. I love working 
+at the cross section of industries, technology, and business where research, engineering, and
+collaboration pave the way for cutting edge discovery. Particularly, I'm interested in software
+that controls physical assets. This passion leads to products that operate under the most 
+challenging domains and constraints. My work is used everywhere -- land, air, and space -- where 
+failure is not an option. With flight-critical and crewed systems at stake, I develop with safety,
+redundancy, and performance in mind.
+
+In my free time, I love staying active. I've played soccer for 16 years love going for runs.
+For the past 2 years, I've been the lead choreographer for UMass Fusion Dance, bringing a 
+new team to national competitions. For most of my life, I've been lucky to travel and I love
+taking trips with friends and family. If you don't see my outside, you can find me watching
+my Boston Sports Franchises beating your favorite teams!
+
+Career Interests:
+- Aerospace/Space
+- Defense
+- Autonomy
+- Guidance, Navigation, and Control (GN&C)
+- Embedded Systems
+- Robotics
+- Hardware-Software Integration
+
+Software Interests:
+- Artificial Intelligence/Machine Learning
+- Object-Oriented Design
+- Simulations
+- Augmented/Virtual Reality
+- Hardware Control

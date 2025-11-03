@@ -1,0 +1,67 @@
+/* Reset body for scrolling */
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  /* Hero section - full viewport height */
+  .hero-section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: var(--hero-bg-image, url('images/jumping-salute.webp'));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
+  /* Quote text */
+  .welcome-text {
+    max-width: 80vw;
+    text-align: center;
+    font-size: clamp(24px, 6vw, 48px);
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.4;
+    z-index: 1;
+    padding: 0 20px;
+  }
+  
+  /* Content sections below hero */
+  .about-content {
+    position: relative;
+    z-index: 1;
+    background-color: #000;
+  }
+  
+  .about-section {
+    padding: 5rem 10%;
+    min-height: 50vh;
+    background-color: #000;
+  }
+  
+  .about-text h2 {
+    font-size: clamp(28px, 5vw, 40px);
+    color: #00ffff;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  
+  .about-text p {
+    font-size: clamp(16px, 2.5vw, 20px);
+    line-height: 1.8;
+    color: #e0e6f5;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .about-section {
+      padding: 3rem 5%;
+    }
+  }
