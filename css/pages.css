@@ -31,42 +31,6 @@ body {
     padding: 0 20px;
   }
   
-  /* Content sections below hero */
-  .about-content {
-    position: relative;
-    z-index: 1;
-    background-color: #000;
-  }
-  
-  .about-section {
-    padding: 5rem 10%;
-    min-height: 50vh;
-    background-color: #000;
-  }
-  
-  .about-text h2 {
-    font-size: clamp(70px, 15vw, 100px);
-    font-family: 'Bricolage Grotesque';
-    text-align: center;
-    color: #00ffff;
-    margin-bottom: 1.5rem;
-    font-weight: 400;
-  }
-  
-  .about-text p {
-    font-size: clamp(16px, 2.5vw, 20px);
-    font-family: Dosis;
-    line-height: 1.8;
-    color: #e0e6f5;
-    margin-bottom: 1.5rem;
-    font-weight: 300;
-  }
-
-  .about-text ul {
-    font-family: Dosis;
-    color: #ffffff;
-  }
-  
   /* Mobile responsiveness */
   @media (max-width: 768px) {
     .about-section {

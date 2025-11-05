@@ -1,0 +1,130 @@
+Employer:
+    NASA
+
+Dates:
+    08/25/2025 - Current
+
+Location:
+    Kennedy Space Center - Merritt Island, Florida
+
+Role:
+    Software Engineer Intern
+
+Mission:
+    Artemis
+
+Description:
+- Engineering automated test suites in Python, validating 9,000+ flight-critical system requirements
+- Developing end-to-end systems verification framework with MySQL and REST APIs to reduce verification time 13%
+- Building data ingestion pipeline converting XML scripts into structured logs, accelerating fault analysis
+- Transforming test outputs into analyzable datasets in Linux, improving anomaly detection
+- Enhancing traceability with Jama, providing linkage information for 300+ core systems
+
+Impact:
+    The Artemis missions bring humanity one step closer to unlocking the secrets to the Universe, by establishing
+    a permanent human presence on the Moon and researching the long term effects of life in space. My work validating and verifying
+    system requirements is mission-critical. This automation tool gives us confidence that every mission requirement is satisfied by adequate testing,
+    simulation, and fail-safe options. In the worst case, the improved fault traceability will accelerate failure analysis and pave the way
+    for solutions. With a $20,000,000,000 asset and 4 astronauts' lives on the line, I am thrilled to play a role in bringing humanity to the stars safely.
+
+
+
+Employer:
+    HII
+
+Dates:
+    01/06/2025 - 07/31/2025
+
+Location:
+    Wright Patterson Air Force Base - Dayton, Ohio
+
+Role:
+    Software Engineer Co-op
+
+Mission:
+    Autonomous Aerial Refueling
+
+Description:
+- Developed real-time training and validation pipelines for convolutional neural networks
+- Built real and synthetic data capture systems, involving a 1200lb-in torque aircraft tracker and high-throughput simulations
+- Optimized gimbal control algorithms with Boost and Dear ImGui, enforcing rate limiting commands and redundant fail-safe options
+- Engineered a radio frequency receiver to intercept aircraft telemetry using Software Defined Radio for RF demodulation, C for binary signal decoding, and Boost.Asio for networking
+- Implemented a C to C++ API for Chrono timekeeping library, enhancing timestamping precision and reducing overlap
+- Leveraged multi threading for data capture and processing, offloading computation from main engine threads.
+
+Technologies:
+C, C++, Python, Bash, CMake, Boost, Dear ImGui, Multi-threading, Software-Defined Radio, Chrono, Simulation Engines, Git, Agile, Linux, Windows, Docker, Visual Studio
+
+Impact:
+    Aerial refueling is a force multiplier, allowing aircraft to remain closer to where they are needed most. By removing the pilot from the cockpit, autonomous aerial refueling maintains
+    the capabilities of today's fighters without the potential loss of life. My work training and validating neural networks for flight ensures control systems for refueling are
+    accurate and reliable for long term use. I am grateful the industry-leading technology I developed will one day save American lives.
+
+
+
+Employer:
+    UMass Robotics
+
+Dates:
+    09/05/2023 - 11/05/2023
+
+Location:
+    Amherst, Massachusetts
+
+Role:
+    Software Engineer
+
+Mission:
+    NASA Lunabotics Challenge
+
+Description:
+- Designed a computer vision navigation system for ROS-based lunar rovers
+- Leveraged asynchronous messaging channels for visual and inertial sensor fusion and fault tolerance
+- Applied stereoscopic sensing system to improve depth estimates
+- Employed image processing with OpenCV to reduce system execution time and resource consumption
+
+Technologies:
+C++, OpenCV, ROS
+
+
+
+Employer:
+    Cape & Cowl Consulting
+
+Dates:
+    07/01/2023 - 09/01/2023
+
+Location:
+    Chicago, Illnois
+
+Role:
+    Data Intern
+
+Description:
+- Analyzed market data to inform new sales engine for consulting clients
+- Used competitor analysis, paid and organic advertising, and Artificial Intelligence to boost client outreach
+- Led final pitch to stakeholders, delivering roadmap to convert data into dollars
+
+
+
+Employer:
+    Northeastern University
+
+Dates:
+    06/20/2022 - 12/01/2022
+
+Location:
+    Boston, Massachusetts
+
+Role:
+    Research Assistant
+
+Description:
+- Configured real-world testing environment for Hierarchically Architectured All-Inorganic Passive Cooling Metapaper
+- Modeled environment in CAD for prototyping
+- Analyzed solar irradiance and heat maps with Ansys Thermal and delivered data to researchers for proof of concept
+
+Impact:
+    The energy demands of the world are ever-growing, especially with the advancement of compute-intensive large language models. Cooling is not zero sum,
+    excess heat removal adds to energy expense and global warming. My work analyzing the capabilities of passive cooling technology will help keep space up
+    to 5 degrees c cooler using no electricity. This technology will play a monumental role in a greener and cooler planet.

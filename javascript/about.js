@@ -99,3 +99,61 @@ function initTypewriterEffect(firstPart, secondPart) {
   document.addEventListener('DOMContentLoaded', () => {
 	initTypewriterEffect(quoteFirstHalf, quoteSecondHalf);
   });
+
+  // about.js
+document.addEventListener("DOMContentLoaded", () => {
+	const cards = document.querySelectorAll(".about-card");
+  
+	const observer = new IntersectionObserver(
+	  (entries) => {
+		entries.forEach((entry) => {
+		  if (entry.isIntersecting) {
+			entry.target.classList.add("visible");
+			observer.unobserve(entry.target); // Animate once
+		  }
+		});
+	  },
+	  { threshold: 0.2 }
+	);
+  
+	cards.forEach((card) => observer.observe(card));
+  });
+  
+// Typing + erasing effect
+const words = ["Aditya", "a Software Engineer", "an Adventurer", "a Space Enthusiast"];
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const span = document.getElementById("changing-word");
+const typingSpeed = 80;   // typing speed in ms
+const erasingSpeed = 50;   // erasing speed in ms
+const delayBetween = 3000; // pause before erasing next word
+
+function typeEffect() {
+  const currentWord = words[wordIndex];
+
+  if (!isDeleting && charIndex < currentWord.length) {
+    span.textContent = currentWord.substring(0, charIndex + 1);
+    charIndex++;
+    setTimeout(typeEffect, typingSpeed);
+  } else if (isDeleting && charIndex > 0) {
+    span.textContent = currentWord.substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(typeEffect, erasingSpeed);
+  } else {
+    if (!isDeleting) {
+      // Finished typing the word — pause before deleting
+      isDeleting = true;
+      setTimeout(typeEffect, delayBetween);
+    } else {
+      // Finished deleting — move to the next word
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      setTimeout(typeEffect, typingSpeed);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(typeEffect, 1000); // 1s delay before starting
+});
