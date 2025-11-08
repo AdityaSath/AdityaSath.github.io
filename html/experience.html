@@ -7,7 +7,7 @@
   <title>Experience - Personal Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/app.css">
   <link rel="stylesheet" href="../css/pages.css">
   <link rel="stylesheet" href="../css/background-images/experience.css">
@@ -24,63 +24,172 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
+
   <section class="hero-section">
     <div class="welcome-text" id="welcomeText">
       Adventure is not in the guidebook, and beauty is not on the map
     </div>
   </section>
 
-  <main class="about-content">
-    <section class="about-section">
-      <div class="about-text">
-        <h2>Hey there, Traveler!</h2>
-        <p>
-          My name is Aditya -- Welcome to my Portfolio!
-        </p>
-        <p>
-          I'm a Software Engineer, Adventurist, and of course, Space Enthusiast
-        </p>
-        <p>
-          I'm from MA, and attend UMass Amherst for Computer Science. I love working 
-          at the cross section of industries, technology, and business where research, engineering, and
-          collaboration pave the way for cutting edge discovery. Particularly, I'm interested in software
-          that controls physical assets. This passion has led to products that operate under the most 
-          challenging domains and constraints. My work is used everywhere -- land, air, and space -- where 
-          failure is not an option. With flight-critical and crewed systems at stake, I develop with safety,
-          redundancy, and performance in mind.
-        </p>
-        <p>
-          In my free time, I love staying active. I've played soccer for 16 years and enjoy going on runs.
-          For the past 2 years, I've been the lead choreographer for UMass Fusion Dance, bringing a 
-          new team to national competitions. For most of my life, I've been lucky to travel and I love
-          taking trips with friends and family. If you don't see my outside, you can find me watching
-          my Boston Sports Franchises beating your favorite teams!
-        </p>
-        <p>
-          Career Interests:
-        </p>
-        <ul>
-          <li>Aerospace/Space</li>
-          <li>Defense</li>
-          <li>Autonomy</li>
-          <li>Guidance, Navigation, and Control (GNC)</li>
-          <li>Embedded Systems</li>
-          <li>Robotics</li>
-          <li>Hardware-Software Integration</li>
-        </ul>
-        <p>
-          Software Interests:
-        </p>
-        <ul>
-          <li>Artificial Intelligence/Machine Learning</li>
-          <li>Object-Oriented Design</li>
-          <li>Simulations</li>
-          <li>Augmented/Virtual Reality</li>
-          <li>Hardware Control</li>
-        </ul>
+  <section class="timeline-section">
+    <div class="timeline">
+      <!-- NASA Node -->
+      <div class="timeline-node">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content left">
+          <div class="company-logo" id="nasa-logo"></div>
+          <h3>NASA</h3>
+          <p><strong>Role:</strong> Software Engineer Intern</p>
+          <p><strong>Dates:</strong> 08/25/2025 - Current</p>
+          <p><strong>Location:</strong> Kennedy Space Center - Merritt Island, Florida</p>
+          <p><strong>Mission:</strong> Artemis</p>
+          <ul>
+            <li>Architecting modular Python automation frameworks validating flight-critical systems, ensuring deterministic behavior across mission-critical avionics</li>
+            <li>Developed distributed verification architecture leveraging MySQL-backed persistence layers and RESTful microservices, optimizing cross-system validation</li>
+            <li>Engineering high-throughput data ingestion pipeline to convert legacy XML test artifacts into normalized telemetry datasets, accelerating fault localization</li>
+            <li>Implementing Linux-native data transformation workflows, enabling rapid synthesis of test output into analyzable signal datasets for anomaly detection</li>
+            <li>Extending Jama Connect integration to construct end-to-end traceability graphs linking core systems, tests, and verification artifacts for audit-grade transparency</li>
+          </ul>
+        </div>
+        <div class="timeline-content right impact-panel" onclick="flipPanel(this)">
+          <div class="impact-statement active">
+            <p>The Artemis missions bring humanity one step closer to unlocking the secrets to the Universe, by establishing a permanent human presence on the Moon and researching the long term effects of life in space. My code safeguards the systems propelling humanity's return to the Moon. Through automation, validation, and traceability, I help transform complexity into confidence — so that every launch brings us closer to the stars.</p>
+          </div>
+          <div class="impact-metrics">
+            <ul>
+              <li>9,000+ flight critical requirements verified</li>
+              <li>300+ core systems validated</li>
+              <li>↑ Automation 15%</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
+
+      <!-- HII Node -->
+      <div class="timeline-node">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content left">
+          <div class="company-logo" id="hii-logo"></div>
+          <h3>HII</h3>
+          <p><strong>Role:</strong> Software Engineer Co-op</p>
+          <p><strong>Dates:</strong> 01/06/2025 - 07/31/2025</p>
+          <p><strong>Location:</strong> Wright Patterson Air Force Base - Dayton, Ohio</p>
+          <p><strong>Mission:</strong> Autonomous Aerial Refueling</p>
+          <ul>
+            <li>Developed real-time training and validation pipelines for convolutional neural networks used in autonomous aerial refueling perception and control loops</li>
+            <li>Designed and integrated physical and synthetic data capture systems, leveraging a 1,200 lb-in torque aircraft tracker and high-fidelity simulation environments</li>
+            <li>Optimized gimbal control algorithms with Boost and Dear ImGui, implementing rate-limiting logic, redundant fail-safes, and adaptive motion constraints</li>
+            <li>Engineered a custom software-defined radio receiver stack to intercept and decode aircraft telemetry, employing C-based demodulation, binary parsing, and Boost.Asio for real-time RF data networking</li>
+            <li>Extended Chrono timekeeping library by implementing C-to-C++ API bridge, increasing timestamping precision and reducing timing overlap</li>
+            <li>Leveraged concurrent multithreading for high-frequency data capture and pre-processing, offloading compute-intensive routines from the primary control engine</li>
+          </ul>
+        </div>
+        <div class="timeline-content right impact-panel" onclick="flipPanel(this)">
+          <div class="impact-statement active">
+            <p>I build the intelligence that lets aircraft refuel themselves — extending their reach, preserving lives, and redefining what it means to fly autonomously.</p>
+          </div>
+          <div class="impact-metrics">
+            <ul>
+              <li>↓ Training Preparation Time 80%</li>
+              <li>10 Gbps Processing Speed</li>
+              <li>↓ Latency 35%</li>
+              <li>↑ Timekeeping Precision 6 Significant Figures</li>
+              <li>↓ Data Overlap 20%</li>
+              <li>↑ 5x Data Generation rate</li>
+              <li>↑ 2x Data Diversity</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- UMass Robotics Node -->
+      <div class="timeline-node">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content left">
+          <div class="company-logo" id="umass-logo"></div>
+          <h3>UMass Robotics</h3>
+          <p><strong>Role:</strong> Software Engineer</p>
+          <p><strong>Dates:</strong> 09/05/2023 - 11/05/2023</p>
+          <p><strong>Location:</strong> Amherst, Massachusetts</p>
+          <p><strong>Mission:</strong> NASA Lunabotics Challenge</p>
+          <ul>
+            <li>Designed a computer vision navigation system for ROS-based lunar rovers</li>
+            <li>Leveraged asynchronous messaging channels for visual and inertial sensor fusion and fault tolerance</li>
+            <li>Applied stereoscopic sensing system to improve depth estimates</li>
+            <li>Employed image processing with OpenCV to reduce system execution time and resource consumption</li>
+          </ul>
+        </div>
+        <div class="timeline-content right impact-panel" onclick="flipPanel(this)">
+          <div class="impact-statement active">
+            <p>Helping my team build a rover and compete at the NASA Lunabotics Laboratory</p>
+          </div>
+          <div class="impact-metrics">
+            <ul>
+              <li>↓ Depth Error 20%</li>
+              <li>↑ 2x fault tolerance</li>
+              <li>↑ Resource Consumption & Execution Time 25%</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cape & Cowl Consulting Node -->
+      <div class="timeline-node">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content left">
+          <div class="company-logo" id="cc-logo"></div>
+          <h3>Cape & Cowl Consulting</h3>
+          <p><strong>Role:</strong> Data Intern</p>
+          <p><strong>Dates:</strong> 07/01/2023 - 09/01/2023</p>
+          <p><strong>Location:</strong> Chicago, Illnois</p>
+          <ul>
+            <li>Analyzed market data to inform new sales engine for consulting clients</li>
+            <li>Used competitor analysis, paid and organic advertising, and Artificial Intelligence to boost client outreach</li>
+            <li>Led final pitch to stakeholders, delivering roadmap to convert data into dollars</li>
+          </ul>
+        </div>
+        <div class="timeline-content right impact-panel" onclick="flipPanel(this)">
+          <div class="impact-statement active">
+            <p>Building a client outreach funnel</p>
+          </div>
+          <div class="impact-metrics">
+            <ul>
+              <li>↑ Client Outreach 40%</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Northeastern Node -->
+      <div class="timeline-node">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content left">
+          <div class="company-logo" id="northeastern-logo"></div>
+          <h3>Northeastern University</h3>
+          <p><strong>Role:</strong> Research Assistant</p>
+          <p><strong>Dates:</strong> 06/20/2022 - 12/01/2022</p>
+          <p><strong>Location:</strong> Boston, Massachusetts</p>
+          <ul>
+            <li>Configured real-world testing environment for Hierarchically Architectured All-Inorganic Passive Cooling Metapaper</li>
+            <li>Modeled environment in CAD for prototyping</li>
+            <li>Analyzed solar irradiance and heat maps with Ansys Thermal and delivered data to researchers for proof of concept</li>
+          </ul>
+        </div>
+        <div class="timeline-content right impact-panel" onclick="flipPanel(this)">
+          <div class="impact-statement active">
+            <p>The energy demands of the world are ever-growing. My work analyzing the capabilities of passive cooling technology will help keep spaces cooler without using electricity, keeping our planet cooler and greener.</p>
+          </div>
+          <div class="impact-metrics">
+            <ul>
+              <li>↑ Prototype Validaity 30%</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <script src="../javascript/experience.js"></script>
 </body>
 </html>
