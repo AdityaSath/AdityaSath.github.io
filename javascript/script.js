@@ -27,13 +27,6 @@ function toggleLightspeed() {
 		// Entering lightspeed
 		isInLightspeed = true;
 		
-		// Animate speedometer to 99.999% c
-		let speedInterval = setInterval(() => {
-			currentSpeed += Math.random() * 5;
-			if (currentSpeed > 99.999) currentSpeed = 99.999;
-			speedometer.textContent = currentSpeed.toFixed(3) + "% c";
-		}, 50);
-		
 		stars.forEach(star => {
 			star.classList.remove('slowing');
 			star.classList.add('traveling');
@@ -48,16 +41,6 @@ function toggleLightspeed() {
 			clearInterval(stars[0].speedInterval);
 		}
 		
-		// Animate speedometer down to 0
-		let decreaseInterval = setInterval(() => {
-			currentSpeed -= Math.random() * 5;
-			if (currentSpeed < 0) currentSpeed = 0;
-			speedometer.textContent = currentSpeed.toFixed(3) + "% c";
-			
-			if (currentSpeed <= 0) {
-				clearInterval(decreaseInterval);
-			}
-		}, 50);
 		
 		stars.forEach(star => {
 			star.classList.remove('traveling');
