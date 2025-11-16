@@ -1,3 +1,128 @@
 :root {
     --hero-bg-image: url('../../images/carina.jpg');
   }
+
+/* Timeline Section */
+.timeline-section {
+  width: 90%;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 10;
+  background-color: #000000;
+}
+
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+  z-index: 12;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #6366f1, #06b6d4);
+  border-radius: 3px;
+  z-index: 12;
+}
+
+.timeline-node {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 4rem 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  z-index: 13;
+}
+
+.timeline-node.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+  width: 16px;
+  height: 16px;
+  background: #06b6d4;
+  border-radius: 50%;
+  z-index: 13;
+  border: 3px solid #0a0e27;
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.3);
+}
+
+.timeline-content {
+  width: 45%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  position: relative;
+  z-index: 5;
+}
+
+.timeline-content:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+  border-color: rgba(99, 102, 241, 0.5);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(6, 182, 212, 0.15) 100%);
+}
+
+.timeline-content.left {
+  text-align: left;
+}
+
+.timeline-content h3 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.timeline-content p {
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.timeline-content strong {
+  color: #06b6d4;
+  font-weight: 600;
+}
+
+.timeline-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.timeline-content ul li {
+  color: #e0e7ff;
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.timeline-content ul li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: #06b6d4;
+  font-weight: bold;
+  font-size: 1.2rem;
+}

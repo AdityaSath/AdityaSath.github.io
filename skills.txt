@@ -1,0 +1,52 @@
+Languages:
+    C++
+    Python
+    Java
+    JavaScript
+    TypeScript
+    C
+
+Libraries:
+    OpenGL
+    OpenCV
+    Boost
+    Requests
+    Chrono
+    BeautifulSoup
+    Selenium
+
+Frameworks:
+    Dear ImGui
+    JUnit
+    Jest
+    GTest
+
+Technologies:
+    Git
+    Windows
+    Linux
+    Github
+    Gitlab
+    Visual Studio
+    Microsoft Office
+    Jama
+    Wireshark
+    Putty
+
+Other:
+    Object-Oriented Design
+    Computer Vision
+    Version Control
+    Embedded Systems
+    Controls
+    Data Pipelines
+    System Verification
+    Communication
+    Collaboration
+    Machine Learning
+    Testing
+    Integration
+    Simulation
+    API
+    Networking
+    Agile

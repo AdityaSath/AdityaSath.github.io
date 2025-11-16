@@ -1,0 +1,32 @@
+School:
+    University of Massachusetts Amherst
+
+Degree:
+    Bachelor of Science in Computer Science
+    Junior
+
+Courses:
+    GPA: 3.84/4.00
+    Object-Oriented Programming (Python/Java)
+    Calculus II (Integral)
+    Calculus III (Multivariate)
+    Physics I (Mechanics)
+    Data Structures (Java)
+    C Programming Language (C)
+    Computation
+    Programming Methodology (JavaScript/TypeScript)
+    Statistics
+    Linear Algebra
+
+Honors & Awards:
+    Amy Mick Soccer Scholarship
+    Academic Dean's List 3/3 semesters
+    Member of Commonwealth Honors College
+
+Extracurriculars:
+    Mass Mirchi - Lead Choreographer
+    UMass Robotics - Software Engineer
+    Machine Learning Club - Member
+    CicSoft - Member
+    South Asian Student Association - Member
+
