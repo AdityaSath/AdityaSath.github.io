@@ -26,7 +26,14 @@ function toggleLightspeed() {
 	if (!isInLightspeed) {
 		// Entering lightspeed
 		isInLightspeed = true;
-		
+
+		// Animate speedometer to 99.999% c
+		let speedInterval = setInterval(() => {
+			currentSpeed += Math.random() * 5;
+			if (currentSpeed > 99.999) currentSpeed = 99.999;
+			speedometer.textContent = currentSpeed.toFixed(3) + "% c";
+		}, 50);
+
 		stars.forEach(star => {
 			star.classList.remove('slowing');
 			star.classList.add('traveling');
@@ -35,13 +42,23 @@ function toggleLightspeed() {
 	} else {
 		// Exiting lightspeed
 		isInLightspeed = false;
-		
+
 		// Clear speed interval and reset
 		if (stars.length > 0 && stars[0].speedInterval) {
 			clearInterval(stars[0].speedInterval);
 		}
-		
-		
+
+		// Animate speedometer down to 0
+		let decreaseInterval = setInterval(() => {
+			currentSpeed -= Math.random() * 5;
+			if (currentSpeed < 0) currentSpeed = 0;
+			speedometer.textContent = currentSpeed.toFixed(3) + "% c";
+
+			if (currentSpeed <= 0) {
+				clearInterval(decreaseInterval);
+			}
+		}, 50);
+
 		stars.forEach(star => {
 			star.classList.remove('traveling');
 			star.classList.add('slowing');
@@ -65,7 +82,7 @@ function positionCenter() {
 }
 
 function targetStarCount() {
-	return Math.min(1000, Math.max(300, Math.floor((scw * sch) / STAR_AREA_DIVISOR)));
+	return 1000;
 }
 
 function clearStars() {
@@ -156,10 +173,10 @@ window.addEventListener('orientationchange', handleResize);
 function initWelcomeTextGlow() {
 	const welcomeText = document.getElementById('welcomeText');
 	if (!welcomeText) return;
-	
+
 	const text = welcomeText.textContent;
 	welcomeText.innerHTML = '';
-	
+
 	// Create individual character spans
 	for (let i = 0; i < text.length; i++) {
 		const char = document.createElement('span');
@@ -167,35 +184,35 @@ function initWelcomeTextGlow() {
 		char.textContent = text[i];
 		welcomeText.appendChild(char);
 	}
-	
+
 	const chars = welcomeText.querySelectorAll('.char');
 	const glowRadius = 3; // Number of characters around cursor to glow
-	
+
 	welcomeText.addEventListener('mousemove', (e) => {
 		const rect = welcomeText.getBoundingClientRect();
 		const x = e.clientX - rect.left;
 		const y = e.clientY - rect.top;
-		
+
 		// Find which character is closest to cursor
 		let closestCharIndex = 0;
 		let minDistance = Infinity;
-		
+
 		chars.forEach((char, index) => {
 			const charRect = char.getBoundingClientRect();
 			const charX = charRect.left - rect.left + charRect.width / 2;
 			const charY = charRect.top - rect.top + charRect.height / 2;
-			
+
 			const distance = Math.sqrt((x - charX) ** 2 + (y - charY) ** 2);
-			
+
 			if (distance < minDistance) {
 				minDistance = distance;
 				closestCharIndex = index;
 			}
 		});
-		
+
 		// Remove glow from all characters
 		chars.forEach(char => char.classList.remove('glow'));
-		
+
 		// Add glow to characters around cursor
 		for (let i = Math.max(0, closestCharIndex - glowRadius); 
 			 i <= Math.min(chars.length - 1, closestCharIndex + glowRadius); 
@@ -203,7 +220,7 @@ function initWelcomeTextGlow() {
 			chars[i].classList.add('glow');
 		}
 	});
-	
+
 	welcomeText.addEventListener('mouseleave', () => {
 		chars.forEach(char => char.classList.remove('glow'));
 	});
@@ -216,33 +233,33 @@ document.addEventListener('DOMContentLoaded', initWelcomeTextGlow);
 function initTypewriterEffect(firstPart, secondPart) {
 	const welcomeText = document.getElementById('welcomeText');
 	if (!welcomeText) return;
-	
+
 	const fullText = welcomeText.textContent;
-	
+
 	welcomeText.innerHTML = '';
-	
+
 	let i = 0;
 	const typeSpeed = 50; // milliseconds per character
 	const eraseSpeed = 30; // milliseconds per character (faster erasing)
 	let isErasing = false;
-	
+
 	function typeChar() {
 		if (!isErasing && i < firstPart.length) {
 			// Typing first part
 			const typedSpan = document.createElement('span');
 			typedSpan.textContent = firstPart.substring(0, i + 1);
-			
+
 			const cursorSpan = document.createElement('span');
 			cursorSpan.textContent = '|';
 			cursorSpan.style.color = '#00ffff';
 			cursorSpan.style.animation = 'blink 1s infinite';
 			cursorSpan.style.fontWeight = 'normal';
 			cursorSpan.style.opacity = '0.8';
-			
+
 			welcomeText.innerHTML = '';
 			welcomeText.appendChild(typedSpan);
 			welcomeText.appendChild(cursorSpan);
-			
+
 			i++;
 			setTimeout(typeChar, typeSpeed);
 		} else if (!isErasing && i >= firstPart.length) {
@@ -256,18 +273,18 @@ function initTypewriterEffect(firstPart, secondPart) {
 			// Erasing first part
 			const typedSpan = document.createElement('span');
 			typedSpan.textContent = firstPart.substring(0, i);
-			
+
 			const cursorSpan = document.createElement('span');
 			cursorSpan.textContent = '|';
 			cursorSpan.style.color = '#00ffff';
 			cursorSpan.style.animation = 'blink 1s infinite';
 			cursorSpan.style.fontWeight = 'normal';
 			cursorSpan.style.opacity = '0.8';
-			
+
 			welcomeText.innerHTML = '';
 			welcomeText.appendChild(typedSpan);
 			welcomeText.appendChild(cursorSpan);
-			
+
 			i--;
 			setTimeout(typeChar, eraseSpeed);
 		} else if (isErasing && i < 0) {
@@ -282,23 +299,23 @@ function initTypewriterEffect(firstPart, secondPart) {
 			}, 500);
 		}
 	}
-	
+
 	function typeSecondPart() {
 		if (i < secondPart.length) {
 			const typedSpan = document.createElement('span');
 			typedSpan.textContent = secondPart.substring(0, i + 1);
-			
+
 			const cursorSpan = document.createElement('span');
 			cursorSpan.textContent = '|';
 			cursorSpan.style.color = '#00ffff';
 			cursorSpan.style.animation = 'blink 1s infinite';
 			cursorSpan.style.fontWeight = 'normal';
 			cursorSpan.style.opacity = '0.8';
-			
+
 			welcomeText.innerHTML = '';
 			welcomeText.appendChild(typedSpan);
 			welcomeText.appendChild(cursorSpan);
-			
+
 			i++;
 			setTimeout(typeSecondPart, typeSpeed);
 		} else {
@@ -308,7 +325,7 @@ function initTypewriterEffect(firstPart, secondPart) {
 			}, 2000);
 		}
 	}
-	
+
 	// Start typing after a short delay
 	setTimeout(typeChar, 500);
 }
@@ -320,12 +337,12 @@ document.addEventListener('DOMContentLoaded', initTypewriterEffect(moonQuoteFirs
 
 document.addEventListener('DOMContentLoaded', () => {
 	const stars = document.querySelectorAll('.star');
-  
+
 	// delay before lightspeed starts
 	setTimeout(() => {
 	  // Start animation
 	  stars.forEach(star => star.classList.add('traveling'));
-  
+
 	  // After animation + delay, reverse it
 	  setTimeout(() => {
 		stars.forEach(star => {
@@ -335,5 +352,3 @@ document.addEventListener('DOMContentLoaded', () => {
 	  }, 3500); // (3s anim + 0.5s)
 	}, 2500);
   });
-  
-  
