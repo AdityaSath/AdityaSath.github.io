@@ -82,7 +82,8 @@ function positionCenter() {
 }
 
 function targetStarCount() {
-	return Math.min(1000, Math.max(300, Math.floor((scw * sch) / STAR_AREA_DIVISOR)));
+	// return Math.min(1000, Math.max(300, Math.floor((scw * sch) / STAR_AREA_DIVISOR)));
+	return 500;
 }
 
 function clearStars() {
