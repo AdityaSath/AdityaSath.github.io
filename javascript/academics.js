@@ -100,5 +100,49 @@ function initTypewriterEffect(firstPart, secondPart) {
 
 quoteFirstHalf = "Do not go gentle into that goodnight...";
 quoteSecondHalf = "Rage, rage, rage against the dying of the light";
+
 // Initialize typewriter effect when DOM is loaded
-document.addEventListener('DOMContentLoaded', initTypewriterEffect(quoteFirstHalf, quoteSecondHalf));
+document.addEventListener('DOMContentLoaded', function() {
+  initTypewriterEffect(quoteFirstHalf, quoteSecondHalf);
+  initConstellationInteractions();
+});
+
+// Initialize constellation interactions
+function initConstellationInteractions() {
+  // Animate stars on scroll into view
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'scale(1)';
+        }, index * 100);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all star elements
+  const stars = document.querySelectorAll('.course-star, .honor-star, .extracurricular-satellite');
+  stars.forEach(star => {
+    star.style.opacity = '0';
+    star.style.transform = 'scale(0.8)';
+    star.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(star);
+  });
+
+  // Add click handlers for detailed info (optional - could show tooltip or modal)
+  stars.forEach(star => {
+    star.addEventListener('click', function() {
+      const data = this.dataset.course || this.dataset.honor || this.dataset.extracurricular;
+      if (data) {
+        // Could show a tooltip or modal with full information
+        console.log(data);
+      }
+    });
+  });
+}

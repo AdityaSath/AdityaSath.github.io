@@ -36,31 +36,33 @@
       <!-- NASA Node -->
       <div class="timeline-node">
         <div class="timeline-dot"></div>
-        <div class="timeline-content left">
-          <div class="company-logo" id="nasa-logo"></div>
-          <h3>NASA</h3>
-          <p><strong>Role:</strong> Software Engineer Intern</p>
-          <p><strong>Dates:</strong> 08/25/2025 - Current</p>
-          <p><strong>Location:</strong> Kennedy Space Center - Merritt Island, Florida</p>
-          <p><strong>Mission:</strong> Artemis</p>
-          <ul>
-            <li>Architecting modular Python automation frameworks validating flight-critical systems, ensuring deterministic behavior across mission-critical avionics</li>
-            <li>Developed distributed verification architecture leveraging MySQL-backed persistence layers and RESTful microservices, optimizing cross-system validation</li>
-            <li>Engineering high-throughput data ingestion pipeline to convert legacy XML test artifacts into normalized telemetry datasets, accelerating fault localization</li>
-            <li>Implementing Linux-native data transformation workflows, enabling rapid synthesis of test output into analyzable signal datasets for anomaly detection</li>
-            <li>Extending Jama Connect integration to construct end-to-end traceability graphs linking core systems, tests, and verification artifacts for audit-grade transparency</li>
-          </ul>
-        </div>
-        <div class="timeline-content right impact-panel" onclick="flipPanel(this)">
-          <div class="impact-statement active">
-            <p>The Artemis missions bring humanity one step closer to unlocking the secrets to the Universe, by establishing a permanent human presence on the Moon and researching the long term effects of life in space. My code safeguards the systems propelling humanity's return to the Moon. Through automation, validation, and traceability, I help transform complexity into confidence — so that every launch brings us closer to the stars.</p>
-          </div>
-          <div class="impact-metrics">
+        <div class="timeline-panel-wrapper">
+          <div class="timeline-content left">
+            <div class="company-logo" id="nasa-logo"></div>
+            <h3>NASA</h3>
+            <p><strong>Role:</strong> Software Engineer Intern</p>
+            <p><strong>Dates:</strong> 08/25/2025 - Current</p>
+            <p><strong>Location:</strong> Kennedy Space Center - Merritt Island, Florida</p>
+            <p><strong>Mission:</strong> Artemis</p>
             <ul>
-              <li>9,000+ flight critical requirements verified</li>
-              <li>300+ core systems validated</li>
-              <li>↑ Automation 15%</li>
+              <li>Architecting modular Python automation frameworks validating flight-critical systems, ensuring deterministic behavior across mission-critical avionics</li>
+              <li>Developed distributed verification architecture leveraging MySQL-backed persistence layers and RESTful microservices, optimizing cross-system validation</li>
+              <li>Engineering high-throughput data ingestion pipeline to convert legacy XML test artifacts into normalized telemetry datasets, accelerating fault localization</li>
+              <li>Implementing Linux-native data transformation workflows, enabling rapid synthesis of test output into analyzable signal datasets for anomaly detection</li>
+              <li>Extending Jama Connect integration to construct end-to-end traceability graphs linking core systems, tests, and verification artifacts for audit-grade transparency</li>
             </ul>
+          </div>
+          <div class="timeline-content right impact-panel">
+            <div class="impact-statement active">
+              <p>The Artemis missions bring humanity one step closer to unlocking the secrets to the Universe, by establishing a permanent human presence on the Moon and researching the long term effects of life in space. My code safeguards the systems propelling humanity's return to the Moon. Through automation, validation, and traceability, I help transform complexity into confidence — so that every launch brings us closer to the stars.</p>
+            </div>
+            <div class="impact-metrics">
+              <ul>
+                <li>9,000+ flight critical requirements verified</li>
+                <li>300+ core systems validated</li>
+                <li>   ↑ Automation 15%</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -68,7 +70,8 @@
       <!-- HII Node -->
       <div class="timeline-node">
         <div class="timeline-dot"></div>
-        <div class="timeline-content left">
+        <div class="timeline-panel-wrapper">
+          <div class="timeline-content left">
           <div class="company-logo" id="hii-logo"></div>
           <h3>HII</h3>
           <p><strong>Role:</strong> Software Engineer Co-op</p>
@@ -83,21 +86,22 @@
             <li>Extended Chrono timekeeping library by implementing C-to-C++ API bridge, increasing timestamping precision and reducing timing overlap</li>
             <li>Leveraged concurrent multithreading for high-frequency data capture and pre-processing, offloading compute-intensive routines from the primary control engine</li>
           </ul>
-        </div>
-        <div class="timeline-content right impact-panel" onclick="flipPanel(this)">
-          <div class="impact-statement active">
-            <p>I build the intelligence that lets aircraft refuel themselves — extending their reach, preserving lives, and redefining what it means to fly autonomously.</p>
           </div>
-          <div class="impact-metrics">
-            <ul>
-              <li>↓ Training Preparation Time 80%</li>
-              <li>10 Gbps Processing Speed</li>
-              <li>↓ Latency 35%</li>
-              <li>↑ Timekeeping Precision 6 Significant Figures</li>
-              <li>↓ Data Overlap 20%</li>
-              <li>↑ 5x Data Generation rate</li>
-              <li>↑ 2x Data Diversity</li>
-            </ul>
+          <div class="timeline-content right impact-panel">
+            <div class="impact-statement active">
+              <p>I build the intelligence that lets aircraft refuel themselves — extending their reach, preserving lives, and redefining what it means to fly autonomously.</p>
+            </div>
+            <div class="impact-metrics">
+              <ul>
+                <li> ↓ Training Preparation Time 80%</li>
+                <li>10 Gbps Processing Speed</li>
+                <li> ↓ Latency 35%</li>
+                <li> ↑ Timekeeping Precision 6 Significant Figures</li>
+                <li> ↓ Data Overlap 20%</li>
+                <li> ↑ 5x Data Generation rate</li>
+                <li> ↑ 2x Data Diversity</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -105,7 +109,8 @@
       <!-- UMass Robotics Node -->
       <div class="timeline-node">
         <div class="timeline-dot"></div>
-        <div class="timeline-content left">
+        <div class="timeline-panel-wrapper">
+          <div class="timeline-content left">
           <div class="company-logo" id="umass-logo"></div>
           <h3>UMass Robotics</h3>
           <p><strong>Role:</strong> Software Engineer</p>
@@ -118,17 +123,18 @@
             <li>Applied stereoscopic sensing system to improve depth estimates</li>
             <li>Employed image processing with OpenCV to reduce system execution time and resource consumption</li>
           </ul>
-        </div>
-        <div class="timeline-content right impact-panel" onclick="flipPanel(this)">
-          <div class="impact-statement active">
-            <p>Helping my team build a rover and compete at the NASA Lunabotics Laboratory</p>
           </div>
-          <div class="impact-metrics">
-            <ul>
-              <li>↓ Depth Error 20%</li>
-              <li>↑ 2x fault tolerance</li>
-              <li>↓ Resource Consumption & Execution Time 25%</li>
-            </ul>
+          <div class="timeline-content right impact-panel">
+            <div class="impact-statement active">
+              <p>Helping my team build a rover and compete at the NASA Lunabotics Laboratory</p>
+            </div>
+            <div class="impact-metrics">
+              <ul>
+                <li> ↓ Depth Error 20%</li>
+                <li> ↑ 2x fault tolerance</li>
+                <li> ↓ Resource Consumption & Execution Time 25%</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -136,7 +142,8 @@
       <!-- Cape & Cowl Consulting Node -->
       <div class="timeline-node">
         <div class="timeline-dot"></div>
-        <div class="timeline-content left">
+        <div class="timeline-panel-wrapper">
+          <div class="timeline-content left">
           <div class="company-logo" id="cc-logo"></div>
           <h3>Cape & Cowl Consulting</h3>
           <p><strong>Role:</strong> Data Intern</p>
@@ -147,15 +154,16 @@
             <li>Used competitor analysis, paid and organic advertising, and Artificial Intelligence to boost client outreach</li>
             <li>Led final pitch to stakeholders, delivering roadmap to convert data into dollars</li>
           </ul>
-        </div>
-        <div class="timeline-content right impact-panel" onclick="flipPanel(this)">
-          <div class="impact-statement active">
-            <p>Building a client outreach funnel</p>
           </div>
-          <div class="impact-metrics">
-            <ul>
-              <li>↑ Client Outreach 40%</li>
-            </ul>
+          <div class="timeline-content right impact-panel">
+            <div class="impact-statement active">
+              <p>Building a client outreach funnel</p>
+            </div>
+            <div class="impact-metrics">
+              <ul>
+                <li>↑ Client Outreach 40%</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -163,7 +171,8 @@
       <!-- Northeastern Node -->
       <div class="timeline-node">
         <div class="timeline-dot"></div>
-        <div class="timeline-content left">
+        <div class="timeline-panel-wrapper">
+          <div class="timeline-content left">
           <div class="company-logo" id="northeastern-logo"></div>
           <h3>Northeastern University</h3>
           <p><strong>Role:</strong> Research Assistant</p>
@@ -174,15 +183,16 @@
             <li>Modeled environment in CAD for prototyping</li>
             <li>Analyzed solar irradiance and heat maps with Ansys Thermal and delivered data to researchers for proof of concept</li>
           </ul>
-        </div>
-        <div class="timeline-content right impact-panel" onclick="flipPanel(this)">
-          <div class="impact-statement active">
-            <p>The energy demands of the world are ever-growing. My work analyzing the capabilities of passive cooling technology will help keep spaces cooler without using electricity, keeping our planet cooler and greener.</p>
           </div>
-          <div class="impact-metrics">
-            <ul>
-              <li>↑ Prototype Validaity 30%</li>
-            </ul>
+          <div class="timeline-content right impact-panel">
+            <div class="impact-statement active">
+              <p>The energy demands of the world are ever-growing. My work analyzing the capabilities of passive cooling technology will help keep spaces cooler without using electricity, keeping our planet cooler and greener.</p>
+            </div>
+            <div class="impact-metrics">
+              <ul>
+                <li> ↑ Prototype Validaity 30%</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

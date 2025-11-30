@@ -88,12 +88,73 @@ function initTypewriterEffect(firstPart, secondPart) {
   setTimeout(typeChar, 500);
 }
 
-// Flip impact panel on click
-function flipPanel(panel) {
+// Toggle panel expansion on click
+function togglePanelExpansion(node) {
+  const leftPanel = node.querySelector('.timeline-content.left');
+  const rightPanel = node.querySelector('.timeline-content.right');
+  
+  if (leftPanel) {
+    leftPanel.classList.toggle('expanded');
+  }
+  if (rightPanel) {
+    rightPanel.classList.toggle('expanded');
+  }
+}
+
+// Flip impact panel between statement and metrics on click
+function flipPanel(panel, event) {
+  event.stopPropagation(); // Prevent triggering the expansion toggle
   const statement = panel.querySelector('.impact-statement');
   const metrics = panel.querySelector('.impact-metrics');
-  statement.classList.toggle('active');
-  metrics.classList.toggle('active');
+  if (statement && metrics) {
+    statement.classList.toggle('active');
+    metrics.classList.toggle('active');
+  }
+}
+
+// Initialize click handlers for timeline nodes
+function initTimelineClickHandlers() {
+  const timelineNodes = document.querySelectorAll('.timeline-node');
+  
+  timelineNodes.forEach(node => {
+    const wrapper = node.querySelector('.timeline-panel-wrapper');
+    const leftPanel = node.querySelector('.timeline-content.left');
+    const rightPanel = node.querySelector('.timeline-content.right');
+    
+    // Make wrapper clickable for expansion (both panels expand together)
+    if (wrapper) {
+      wrapper.addEventListener('click', function(e) {
+        // Don't trigger if clicking on a link or button inside
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+          return;
+        }
+        togglePanelExpansion(node);
+      });
+    }
+    
+    // Make left panel clickable for expansion
+    if (leftPanel) {
+      leftPanel.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent wrapper click from firing
+        togglePanelExpansion(node);
+      });
+    }
+    
+    // Make right panel clickable for expansion
+    if (rightPanel) {
+      rightPanel.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent wrapper click from firing
+        // When expanded, clicking on statement/metrics flips between them
+        if (rightPanel.classList.contains('expanded') && 
+            (e.target.closest('.impact-statement') || e.target.closest('.impact-metrics'))) {
+          flipPanel(rightPanel, e);
+        } else {
+          // Otherwise, expand/collapse both panels
+          togglePanelExpansion(node);
+        }
+      });
+    }
+  });
 }
 
 // Scroll animation for timeline nodes
@@ -115,9 +176,50 @@ document.addEventListener('DOMContentLoaded', function() {
   const quoteSecondHalf = "And beauty is not on the map";
   initTypewriterEffect(quoteFirstHalf, quoteSecondHalf);
   
+  // Initialize timeline click handlers
+  initTimelineClickHandlers();
+  
+  // Extract role titles and populate right panels
+  extractRoleTitles();
+  
   // Initial check for visible nodes
   checkNodes();
 });
+
+// Extract role title from left panel and add to right panel
+function extractRoleTitles() {
+  const timelineNodes = document.querySelectorAll('.timeline-node');
+  
+  timelineNodes.forEach(node => {
+    const leftPanel = node.querySelector('.timeline-content.left');
+    const rightPanel = node.querySelector('.timeline-content.right.impact-panel');
+    
+    if (leftPanel && rightPanel) {
+      // Find the role paragraph in the left panel
+      const roleParagraphs = leftPanel.querySelectorAll('p');
+      let roleText = '';
+      
+      roleParagraphs.forEach(p => {
+        const strong = p.querySelector('strong');
+        if (strong && strong.textContent.includes('Role:')) {
+          roleText = p.textContent.replace('Role:', '').trim();
+        }
+      });
+      
+      if (roleText) {
+        // Check if role-title already exists, if not create it
+        let roleTitle = rightPanel.querySelector('.role-title');
+        if (!roleTitle) {
+          roleTitle = document.createElement('div');
+          roleTitle.className = 'role-title';
+          // Insert at the very beginning of the panel
+          rightPanel.insertBefore(roleTitle, rightPanel.firstChild);
+        }
+        roleTitle.textContent = roleText;
+      }
+    }
+  });
+}
 
 // Check nodes on scroll
 window.addEventListener('scroll', checkNodes);

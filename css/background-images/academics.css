@@ -1,3 +1,508 @@
+/* academics.css */
 :root {
-    --hero-bg-image: url('../../images/iss.jpg');
+  --hero-bg-image: url('../../images/iss.jpg');
+}
+
+/* Main layout */
+.academics-content {
+  position: relative;
+  z-index: 1;
+  background-color: #000;
+  min-height: 100vh;
+}
+
+.academics-section {
+  padding: 3rem 5%;
+  min-height: 100vh;
+  background-color: #000;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* Central Header */
+.academic-center {
+  text-align: center;
+  padding: 2rem;
+  z-index: 10;
+  position: relative;
+}
+
+.school-name {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+}
+
+.degree-info {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 500;
+  color: #06b6d4;
+  margin-bottom: 0.5rem;
+}
+
+.class-year {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  color: #cbd5e1;
+  margin-bottom: 1.5rem;
+}
+
+.gpa-display {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: rgba(6, 182, 212, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+}
+
+.gpa-label {
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: #06b6d4;
+  font-weight: 600;
+}
+
+.gpa-value {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #00ffff;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+.gpa-max {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: #cbd5e1;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 600;
+  color: #06b6d4;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+}
+
+/* Honors & Awards - Bright Stars */
+.honors-constellation {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 9;
+}
+
+.honors-container {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.honor-star {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.star-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.4) 0%, transparent 70%);
+  animation: pulse 3s ease-in-out infinite;
+  filter: blur(8px);
+}
+
+.star-core {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #06b6d4, #00ffff);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(6, 182, 212, 0.6);
+  z-index: 2;
+}
+
+.honor-label {
+  position: absolute;
+  top: 100%;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.honor-star:hover .star-glow {
+  animation: pulse 1s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.6) 0%, transparent 70%);
+}
+
+.honor-star:hover .star-core {
+  box-shadow: 0 0 30px rgba(0, 255, 255, 1), 0 0 60px rgba(6, 182, 212, 0.8);
+  transform: scale(1.2);
+}
+
+.honor-star:hover .honor-label {
+  opacity: 1;
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+/* Courses Constellation - Circular Layout */
+.courses-constellation {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 8;
+  min-height: 600px;
+}
+
+.constellation-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.course-star {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.course-star .star-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%);
+  animation: pulse 4s ease-in-out infinite;
+  filter: blur(6px);
+}
+
+.course-star .star-core {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #06b6d4, #00ffff);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.6), 0 0 30px rgba(0, 255, 255, 0.4);
+  z-index: 2;
+}
+
+.course-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 600;
+  z-index: 3;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.course-lang {
+  position: absolute;
+  top: calc(50% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  color: #06b6d4;
+  text-align: center;
+  z-index: 3;
+  white-space: nowrap;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+/* Course positioning - circular constellation */
+/* Programming courses - outer ring (1-5 in container) */
+.constellation-container > .course-star.programming:nth-child(1) { 
+  top: 15%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+}
+.constellation-container > .course-star.programming:nth-child(2) { 
+  top: 30%; 
+  left: 75%; 
+  transform: translate(-50%, -50%); 
+}
+.constellation-container > .course-star.programming:nth-child(3) { 
+  top: 70%; 
+  left: 75%; 
+  transform: translate(-50%, -50%); 
+}
+.constellation-container > .course-star.programming:nth-child(4) { 
+  top: 70%; 
+  left: 25%; 
+  transform: translate(-50%, -50%); 
+}
+.constellation-container > .course-star.programming:nth-child(5) { 
+  top: 30%; 
+  left: 25%; 
+  transform: translate(-50%, -50%); 
+}
+
+/* Math courses - middle ring (6-9 in container) */
+.constellation-container > .course-star.math:nth-child(6) { 
+  top: 20%; 
+  left: 85%; 
+  transform: translate(-50%, -50%); 
+}
+.constellation-container > .course-star.math:nth-child(7) { 
+  top: 80%; 
+  left: 85%; 
+  transform: translate(-50%, -50%); 
+}
+.constellation-container > .course-star.math:nth-child(8) { 
+  top: 80%; 
+  left: 15%; 
+  transform: translate(-50%, -50%); 
+}
+.constellation-container > .course-star.math:nth-child(9) { 
+  top: 20%; 
+  left: 15%; 
+  transform: translate(-50%, -50%); 
+}
+
+/* Science courses - center (10 in container) */
+.constellation-container > .course-star.science:nth-child(10) { 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+}
+
+.course-star:hover {
+  z-index: 15;
+}
+
+.course-star:hover .star-glow {
+  animation: pulse 1s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.5) 0%, transparent 70%);
+}
+
+.course-star:hover .star-core {
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.8), 0 0 50px rgba(0, 255, 255, 0.6);
+  transform: scale(1.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-star:hover .course-label,
+.course-star:hover .course-lang {
+  opacity: 1;
+}
+
+.course-star:hover .course-label {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  top: calc(50% - 25px);
+}
+
+/* Extracurriculars - Satellites */
+.extracurriculars-constellation {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 7;
+}
+
+.extracurriculars-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.extracurricular-satellite {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.satellite-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+  animation: pulse 5s ease-in-out infinite;
+  filter: blur(5px);
+}
+
+.satellite-core {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5), 0 0 20px rgba(6, 182, 212, 0.3);
+  z-index: 2;
+}
+
+.extracurricular-label {
+  position: absolute;
+  top: 100%;
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  text-align: center;
+  line-height: 1.3;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.extracurricular-label .role {
+  font-size: 0.7rem;
+  color: #06b6d4;
+  display: block;
+}
+
+.extracurricular-satellite:hover .satellite-glow {
+  animation: pulse 1.5s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, transparent 70%);
+}
+
+.extracurricular-satellite:hover .satellite-core {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.7), 0 0 40px rgba(6, 182, 212, 0.5);
+  transform: scale(1.3);
+}
+
+.extracurricular-satellite:hover .extracurricular-label {
+  opacity: 1;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
   }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .academics-section {
+    gap: 3rem;
+    padding: 2rem 3%;
+  }
+
+  .constellation-container {
+    height: 500px;
+  }
+
+  .honors-container {
+    gap: 2rem;
+  }
+
+  .extracurriculars-container {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .academics-section {
+    gap: 2.5rem;
+    padding: 2rem 2%;
+  }
+
+  .constellation-container {
+    height: 400px;
+  }
+
+  .course-star {
+    width: 80px;
+    height: 80px;
+  }
+
+  .course-star .star-core {
+    width: 12px;
+    height: 12px;
+  }
+
+  .honor-star {
+    width: 100px;
+    height: 100px;
+  }
+
+  .honor-star .star-core {
+    width: 16px;
+    height: 16px;
+  }
+
+  .extracurricular-satellite {
+    width: 80px;
+    height: 80px;
+  }
+
+  .extracurricular-satellite .satellite-core {
+    width: 12px;
+    height: 12px;
+  }
+
+  .course-label {
+    font-size: 0.65rem;
+  }
+
+  .course-lang {
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .academics-section {
+    gap: 2rem;
+  }
+
+  .constellation-container {
+    height: 350px;
+  }
+
+  .gpa-display {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .honors-container,
+  .extracurriculars-container {
+    gap: 1rem;
+  }
+}

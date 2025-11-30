@@ -103,4 +103,67 @@ function initTypewriterEffect(firstPart, secondPart) {
 quoteFirstHalf = "We are all children of the Universe...";
 quoteSecondHalf = "We are all Stardust";
 // Initialize typewriter effect when DOM is loaded
-document.addEventListener('DOMContentLoaded', initTypewriterEffect(quoteFirstHalf, quoteSecondHalf));
+document.addEventListener('DOMContentLoaded', function() {
+  initTypewriterEffect(quoteFirstHalf, quoteSecondHalf);
+  
+  // Initialize timeline click handlers
+  initTimelineClickHandlers();
+  
+  // Initial check for visible nodes
+  checkNodes();
+});
+
+// Toggle panel expansion on click
+function togglePanelExpansion(node) {
+  const content = node.querySelector('.timeline-content');
+  
+  if (content) {
+    content.classList.toggle('expanded');
+  }
+}
+
+// Initialize click handlers for timeline nodes
+function initTimelineClickHandlers() {
+  const timelineNodes = document.querySelectorAll('.timeline-node');
+  
+  timelineNodes.forEach(node => {
+    const wrapper = node.querySelector('.timeline-panel-wrapper');
+    const content = node.querySelector('.timeline-content');
+    
+    // Make wrapper clickable for expansion
+    if (wrapper) {
+      wrapper.addEventListener('click', function(e) {
+        // Don't trigger if clicking on a link or button inside
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+          return;
+        }
+        togglePanelExpansion(node);
+      });
+    }
+    
+    // Make content clickable for expansion
+    if (content) {
+      content.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent wrapper click from firing
+        togglePanelExpansion(node);
+      });
+    }
+  });
+}
+
+// Scroll animation for timeline nodes
+function checkNodes() {
+  const nodes = document.querySelectorAll('.timeline-node');
+  const triggerBottom = window.innerHeight * 0.85;
+
+  nodes.forEach(node => {
+    const nodeTop = node.getBoundingClientRect().top;
+    if(nodeTop < triggerBottom) {
+      node.classList.add('visible');
+    }
+  });
+}
+
+// Check nodes on scroll
+window.addEventListener('scroll', checkNodes);
+window.addEventListener('load', checkNodes);
