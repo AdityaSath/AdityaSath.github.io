@@ -1,10 +1,12 @@
 Languages:
     C++
+    C
     Python
     Java
     JavaScript
     TypeScript
-    C
+    HTML
+    CSS
 
 Libraries:
     OpenGL
@@ -47,6 +49,6 @@ Other:
     Testing
     Integration
     Simulation
-    API
+    API (REST)
     Networking
     Agile
