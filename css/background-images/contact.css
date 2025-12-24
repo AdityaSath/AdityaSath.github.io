@@ -1,3 +1,184 @@
 :root {
     --hero-bg-image: url('../../images/galaxy.jpg');
 }
+
+/* Terminal Container */
+.about-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 0vh;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.about-section {
+  padding: 4rem 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background: rgba(0, 0, 0, 1);
+}
+
+.terminal-container {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(10, 10, 20, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.terminal-header {
+  background: rgba(20, 20, 30, 0.9);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 8px;
+  margin-right: 16px;
+}
+
+.terminal-buttons span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+
+.btn-close {
+  background: #ff5f56;
+}
+
+.btn-minimize {
+  background: #ffbd2e;
+}
+
+.btn-maximize {
+  background: #27c93f;
+}
+
+.terminal-title {
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.terminal-body {
+  padding: 24px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #00ff00;
+  min-height: 400px;
+}
+
+.terminal-line {
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.terminal-prompt {
+  color: #00ffff;
+  margin-right: 8px;
+}
+
+.terminal-loading {
+  color: #ffff00;
+}
+
+.terminal-success {
+  color: #00ff00;
+}
+
+.terminal-label {
+  color: #ff00ff;
+  font-weight: 500;
+}
+
+.terminal-link {
+  color: #00ffff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.terminal-link:hover {
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+  text-decoration: underline;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: #00ff00;
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+.resume-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 16px;
+}
+
+.resume-btn {
+  color: #00ffff;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.resume-btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 3rem 5%;
+  }
+  
+  .terminal-body {
+    font-size: 12px;
+    padding: 16px;
+  }
+  
+  .terminal-title {
+    font-size: 11px;
+  }
+  
+  .resume-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .resume-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

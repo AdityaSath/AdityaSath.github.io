@@ -90,6 +90,28 @@ function initTypewriterEffect(firstPart, secondPart) {
 			isTypingThirdPart = true;
 			setTimeout(() => {
 				welcomeText.innerHTML = secondPart;
+				
+				// Add author name with fade-in
+				const authorSpan = document.createElement('div');
+				authorSpan.textContent = '— Dylan Thomas';  // CHANGE THIS per page
+				authorSpan.style.fontSize = 'clamp(14px, 3vw, 24px)';
+				authorSpan.style.color = 'rgba(255, 255, 255, 0.7)';
+				authorSpan.style.fontStyle = 'italic';
+				authorSpan.style.opacity = '0';
+				authorSpan.style.transition = 'opacity 2s ease';
+				authorSpan.style.position = 'absolute';
+				authorSpan.style.top = '100%';
+				authorSpan.style.left = '50%';
+				authorSpan.style.transform = 'translateX(-50%)';
+				authorSpan.style.marginTop = '20px';
+				authorSpan.style.whiteSpace = 'nowrap';
+				
+				welcomeText.appendChild(authorSpan);
+				
+				// Trigger fade-in
+				setTimeout(() => {
+					authorSpan.style.opacity = '1';
+				}, 100);
 			}, 2000);
 		}
 	}

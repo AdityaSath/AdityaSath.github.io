@@ -1,354 +1,246 @@
+let canvas, ctx;
 let isInLightspeed = false;
 let stars = [];
-let speedometer = null;
+let animationFrame;
 let currentSpeed = 0;
-const STAR_AREA_DIVISOR = 800;
-let centerEl = null;
 
-function calcCenter() {
-	let center = document.createElement("div");
-	center.setAttribute("class", "center");
-	center.style.top = scy + "px";
-	center.style.left = scx + "px";
-	document.body.appendChild(center);
-}
-
-function calcAngle(p1, p2) {
-	var angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
-	return radToDegree(angle);
-}
-
-function radToDegree(rad) {
-	return ((rad > 0 ? rad : 2 * Math.PI + rad) * 360) / (2 * Math.PI);
-}
-
-function toggleLightspeed() {
-	if (!isInLightspeed) {
-		// Entering lightspeed
-		isInLightspeed = true;
-
-		// Animate speedometer to 99.999% c
-		let speedInterval = setInterval(() => {
-			currentSpeed += Math.random() * 5;
-			if (currentSpeed > 99.999) currentSpeed = 99.999;
-			speedometer.textContent = currentSpeed.toFixed(3) + "% c";
-		}, 50);
-
-		stars.forEach(star => {
-			star.classList.remove('slowing');
-			star.classList.add('traveling');
-			star.speedInterval = speedInterval; // Store for later clearing
-		});
-	} else {
-		// Exiting lightspeed
-		isInLightspeed = false;
-
-		// Clear speed interval and reset
-		if (stars.length > 0 && stars[0].speedInterval) {
-			clearInterval(stars[0].speedInterval);
-		}
-
-		// Animate speedometer down to 0
-		let decreaseInterval = setInterval(() => {
-			currentSpeed -= Math.random() * 5;
-			if (currentSpeed < 0) currentSpeed = 0;
-			speedometer.textContent = currentSpeed.toFixed(3) + "% c";
-
-			if (currentSpeed <= 0) {
-				clearInterval(decreaseInterval);
-			}
-		}, 50);
-
-		stars.forEach(star => {
-			star.classList.remove('traveling');
-			star.classList.add('slowing');
-		});
-	}
-}
-
-function calcViewport() {
-	sch = window.innerHeight;
-	scw = window.innerWidth;
-	scx = scw / 2;
-	scy = sch / 2;
-}
-
-function positionCenter() {
-	if (!centerEl) centerEl = document.querySelector('.center');
-	if (centerEl) {
-		centerEl.style.top = scy + "px";
-		centerEl.style.left = scx + "px";
-	}
-}
-
-function targetStarCount() {
-	return 1000;
-}
-
-function clearStars() {
-	for (const s of stars) s.remove();
-	stars = [];
+function initCanvas() {
+    canvas = document.createElement('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.zIndex = '0';
+    canvas.style.pointerEvents = 'none';
+    document.body.insertBefore(canvas, document.body.firstChild);
+    ctx = canvas.getContext('2d');
 }
 
 function createStars(count) {
-	for (let i = 0; i < count; i++) {
-		let div = document.createElement("div");
-		let top = Math.floor(Math.random() * sch);
-		let left = Math.floor(Math.random() * scw);
-		let angle = calcAngle({ x: left, y: top }, { x: scx, y: scy });
-		div.setAttribute("class", "star");
-		div.style.top = top + "px";
-		div.style.left = left + "px";
-		div.style.transform = "rotate(" + (angle + 180) + "deg)";
-		if (
-			top >= scy - centerBounds &&
-			top <= scy + centerBounds &&
-			left >= scx - centerBounds &&
-			left <= scx + centerBounds
-		) {
-			div.style.maxWidth = "1px";
-		}
-		document.body.appendChild(div);
-		stars.push(div);
-	}
+    stars = [];
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    
+    for (let i = 0; i < count; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const angle = Math.atan2(y - centerY, x - centerX);
+        
+        stars.push({
+            x, y, angle,
+            length: 1,
+            targetLength: 1,
+            color: { r: 255, g: 255, b: 255 }
+        });
+    }
 }
 
-function rebuildScene() {
-	const inLS = isInLightspeed;
-	if (stars.length > 0 && stars[0].speedInterval) {
-		clearInterval(stars[0].speedInterval);
-	}
-	calcViewport();
-	positionCenter();
-	const count = targetStarCount();
-	clearStars();
-	createStars(count);
-	if (inLS) {
-		stars.forEach(star => {
-			star.classList.remove('slowing');
-			star.classList.add('traveling');
-		});
-	} else {
-		stars.forEach(star => {
-			star.classList.remove('traveling');
-			star.classList.add('slowing');
-		});
-	}
+function animate() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    stars.forEach(star => {
+        if (isInLightspeed) {
+            star.targetLength = Math.min(canvas.height, star.length + 20);
+            star.color = { r: 74, g: 158, b: 255 };
+        } else {
+            star.targetLength = 1;
+            star.color = { r: 255, g: 255, b: 255 };
+        }
+        
+        const easingSpeed = isInLightspeed ? 0.6 : 0.06;  // 0.2 = faster forward, 0.05 = slower reverse
+    	star.length += (star.targetLength - star.length) * easingSpeed;
+        
+        const endX = star.x + Math.cos(star.angle) * star.length;
+        const endY = star.y + Math.sin(star.angle) * star.length;
+        
+        const gradient = ctx.createLinearGradient(star.x, star.y, endX, endY);
+        gradient.addColorStop(0, `rgba(${star.color.r}, ${star.color.g}, ${star.color.b}, 0)`);
+        gradient.addColorStop(1, `rgba(${star.color.r}, ${star.color.g}, ${star.color.b}, 1)`);
+        
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(star.x, star.y);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+    });
+    
+    animationFrame = requestAnimationFrame(animate);
 }
 
-// Calculate window size
-let scw, sch, scx, scy;
-calcViewport();
-centerBounds = 40;
+function toggleLightspeed() {
+    isInLightspeed = !isInLightspeed;
+}
 
-// Place central point
-calcCenter();
-positionCenter();
+// Initialize
+initCanvas();
+createStars(1500);
+animate();
 
-// Get references to existing HTML elements
-const welcomeText = document.querySelector('.welcome-text');
-speedometer = document.querySelector('.speedometer');
-
-// Create stars responsively
-createStars(targetStarCount());
-
-// Listen for Enter key
-document.addEventListener('keydown', (event) => {
-	if (event.key === 'Enter') {
-		toggleLightspeed();
-	}
+// Toggle on Enter
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        toggleLightspeed();
+    }
 });
 
-// Responsive rebuild on resize/orientation
-let resizeTO;
-function handleResize() {
-	clearTimeout(resizeTO);
-	resizeTO = setTimeout(rebuildScene, 150);
-}
-window.addEventListener('resize', handleResize, { passive: true });
-window.addEventListener('orientationchange', handleResize);
-
+// Handle resize
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    createStars(1500);
+});
 
 // Welcome text character glow effect
 function initWelcomeTextGlow() {
-	const welcomeText = document.getElementById('welcomeText');
-	if (!welcomeText) return;
+    const welcomeText = document.getElementById('welcomeText');
+    if (!welcomeText) return;
 
-	const text = welcomeText.textContent;
-	welcomeText.innerHTML = '';
+    const text = welcomeText.textContent;
+    welcomeText.innerHTML = '';
 
-	// Create individual character spans
-	for (let i = 0; i < text.length; i++) {
-		const char = document.createElement('span');
-		char.className = 'char';
-		char.textContent = text[i];
-		welcomeText.appendChild(char);
-	}
+    for (let i = 0; i < text.length; i++) {
+        const char = document.createElement('span');
+        char.className = 'char';
+        char.textContent = text[i];
+        welcomeText.appendChild(char);
+    }
 
-	const chars = welcomeText.querySelectorAll('.char');
-	const glowRadius = 3; // Number of characters around cursor to glow
+    const chars = welcomeText.querySelectorAll('.char');
+    const glowRadius = 3;
 
-	welcomeText.addEventListener('mousemove', (e) => {
-		const rect = welcomeText.getBoundingClientRect();
-		const x = e.clientX - rect.left;
-		const y = e.clientY - rect.top;
+    welcomeText.addEventListener('mousemove', (e) => {
+        const rect = welcomeText.getBoundingClientRect();
+        const x = e.clientX - rect.left;
 
-		// Find which character is closest to cursor
-		let closestCharIndex = 0;
-		let minDistance = Infinity;
+        let closestCharIndex = 0;
+        let minDistance = Infinity;
 
-		chars.forEach((char, index) => {
-			const charRect = char.getBoundingClientRect();
-			const charX = charRect.left - rect.left + charRect.width / 2;
-			const charY = charRect.top - rect.top + charRect.height / 2;
+        chars.forEach((char, index) => {
+            const charRect = char.getBoundingClientRect();
+            const charX = charRect.left - rect.left + charRect.width / 2;
+            const charY = charRect.top - rect.top + charRect.height / 2;
+            const distance = Math.sqrt((x - charX) ** 2 + (e.clientY - rect.top - charY) ** 2);
 
-			const distance = Math.sqrt((x - charX) ** 2 + (y - charY) ** 2);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestCharIndex = index;
+            }
+        });
 
-			if (distance < minDistance) {
-				minDistance = distance;
-				closestCharIndex = index;
-			}
-		});
+        chars.forEach(char => char.classList.remove('glow'));
 
-		// Remove glow from all characters
-		chars.forEach(char => char.classList.remove('glow'));
+        for (let i = Math.max(0, closestCharIndex - glowRadius); 
+             i <= Math.min(chars.length - 1, closestCharIndex + glowRadius); 
+             i++) {
+            chars[i].classList.add('glow');
+        }
+    });
 
-		// Add glow to characters around cursor
-		for (let i = Math.max(0, closestCharIndex - glowRadius); 
-			 i <= Math.min(chars.length - 1, closestCharIndex + glowRadius); 
-			 i++) {
-			chars[i].classList.add('glow');
-		}
-	});
-
-	welcomeText.addEventListener('mouseleave', () => {
-		chars.forEach(char => char.classList.remove('glow'));
-	});
+    welcomeText.addEventListener('mouseleave', () => {
+        chars.forEach(char => char.classList.remove('glow'));
+    });
 }
 
-// Initialize the glow effect when DOM is loaded
-document.addEventListener('DOMContentLoaded', initWelcomeTextGlow);
-
-// Typewriter animation for welcome text
 function initTypewriterEffect(firstPart, secondPart) {
-	const welcomeText = document.getElementById('welcomeText');
-	if (!welcomeText) return;
+    const welcomeText = document.getElementById('welcomeText');
+    if (!welcomeText) return;
 
-	const fullText = welcomeText.textContent;
+    welcomeText.innerHTML = '';
 
-	welcomeText.innerHTML = '';
+    let i = 0;
+    const typeSpeed = 50;
+    const eraseSpeed = 30;
+    let isErasing = false;
 
-	let i = 0;
-	const typeSpeed = 50; // milliseconds per character
-	const eraseSpeed = 30; // milliseconds per character (faster erasing)
-	let isErasing = false;
+    function typeChar() {
+        if (!isErasing && i < firstPart.length) {
+            const typedSpan = document.createElement('span');
+            typedSpan.textContent = firstPart.substring(0, i + 1);
 
-	function typeChar() {
-		if (!isErasing && i < firstPart.length) {
-			// Typing first part
-			const typedSpan = document.createElement('span');
-			typedSpan.textContent = firstPart.substring(0, i + 1);
+            const cursorSpan = document.createElement('span');
+            cursorSpan.textContent = '|';
+            cursorSpan.style.color = '#00ffff';
+            cursorSpan.style.animation = 'blink 1s infinite';
+            cursorSpan.style.fontWeight = 'normal';
+            cursorSpan.style.opacity = '0.8';
 
-			const cursorSpan = document.createElement('span');
-			cursorSpan.textContent = '|';
-			cursorSpan.style.color = '#00ffff';
-			cursorSpan.style.animation = 'blink 1s infinite';
-			cursorSpan.style.fontWeight = 'normal';
-			cursorSpan.style.opacity = '0.8';
+            welcomeText.innerHTML = '';
+            welcomeText.appendChild(typedSpan);
+            welcomeText.appendChild(cursorSpan);
 
-			welcomeText.innerHTML = '';
-			welcomeText.appendChild(typedSpan);
-			welcomeText.appendChild(cursorSpan);
+            i++;
+            setTimeout(typeChar, typeSpeed);
+        } else if (!isErasing && i >= firstPart.length) {
+            setTimeout(() => {
+                isErasing = true;
+                i = firstPart.length - 1;
+                typeChar();
+            }, 1500);
+        } else if (isErasing && i >= 0) {
+            const typedSpan = document.createElement('span');
+            typedSpan.textContent = firstPart.substring(0, i);
 
-			i++;
-			setTimeout(typeChar, typeSpeed);
-		} else if (!isErasing && i >= firstPart.length) {
-			// Finished typing first part, pause then start erasing
-			setTimeout(() => {
-				isErasing = true;
-				i = firstPart.length - 1;
-				typeChar();
-			}, 1500); // Pause for 1.5 seconds
-		} else if (isErasing && i >= 0) {
-			// Erasing first part
-			const typedSpan = document.createElement('span');
-			typedSpan.textContent = firstPart.substring(0, i);
+            const cursorSpan = document.createElement('span');
+            cursorSpan.textContent = '|';
+            cursorSpan.style.color = '#00ffff';
+            cursorSpan.style.animation = 'blink 1s infinite';
+            cursorSpan.style.fontWeight = 'normal';
+            cursorSpan.style.opacity = '0.8';
 
-			const cursorSpan = document.createElement('span');
-			cursorSpan.textContent = '|';
-			cursorSpan.style.color = '#00ffff';
-			cursorSpan.style.animation = 'blink 1s infinite';
-			cursorSpan.style.fontWeight = 'normal';
-			cursorSpan.style.opacity = '0.8';
+            welcomeText.innerHTML = '';
+            welcomeText.appendChild(typedSpan);
+            welcomeText.appendChild(cursorSpan);
 
-			welcomeText.innerHTML = '';
-			welcomeText.appendChild(typedSpan);
-			welcomeText.appendChild(cursorSpan);
+            i--;
+            setTimeout(typeChar, eraseSpeed);
+        } else if (isErasing && i < 0) {
+            i = 0;
+            setTimeout(typeSecondPart, 500);
+        }
+    }
 
-			i--;
-			setTimeout(typeChar, eraseSpeed);
-		} else if (isErasing && i < 0) {
-			// Finished erasing, start typing second part
-			i = 0;
-			setTimeout(() => {
-				typeSecondPart();
-			}, 500); // Brief pause before typing second part
+    function typeSecondPart() {
+        if (i < secondPart.length) {
+            const typedSpan = document.createElement('span');
+            typedSpan.textContent = secondPart.substring(0, i + 1);
 
-			setTimeout(() => {
-				typeJumpInstructions();
-			}, 500);
-		}
-	}
+            const cursorSpan = document.createElement('span');
+            cursorSpan.textContent = '|';
+            cursorSpan.style.color = '#00ffff';
+            cursorSpan.style.animation = 'blink 1s infinite';
+            cursorSpan.style.fontWeight = 'normal';
+            cursorSpan.style.opacity = '0.8';
 
-	function typeSecondPart() {
-		if (i < secondPart.length) {
-			const typedSpan = document.createElement('span');
-			typedSpan.textContent = secondPart.substring(0, i + 1);
+            welcomeText.innerHTML = '';
+            welcomeText.appendChild(typedSpan);
+            welcomeText.appendChild(cursorSpan);
 
-			const cursorSpan = document.createElement('span');
-			cursorSpan.textContent = '|';
-			cursorSpan.style.color = '#00ffff';
-			cursorSpan.style.animation = 'blink 1s infinite';
-			cursorSpan.style.fontWeight = 'normal';
-			cursorSpan.style.opacity = '0.8';
+            i++;
+            setTimeout(typeSecondPart, typeSpeed);
+        } else {
+            setTimeout(() => {
+                welcomeText.innerHTML = secondPart;
+            }, 2000);
+        }
+    }
 
-			welcomeText.innerHTML = '';
-			welcomeText.appendChild(typedSpan);
-			welcomeText.appendChild(cursorSpan);
-
-			i++;
-			setTimeout(typeSecondPart, typeSpeed);
-		} else {
-			// Typing complete, remove cursor after a delay
-			setTimeout(() => {
-				welcomeText.innerHTML = secondPart;
-			}, 2000);
-		}
-	}
-
-	// Start typing after a short delay
-	setTimeout(typeChar, 500);
+    setTimeout(typeChar, 500);
 }
 
-moonQuoteFirstHalf = "If you shoot for the Moon and miss...";
-moonQuoteSecondHalf = "You'll land among the stars";
-// Initialize typewriter effect when DOM is loaded
-document.addEventListener('DOMContentLoaded', initTypewriterEffect(moonQuoteFirstHalf, moonQuoteSecondHalf));
+const moonQuoteFirstHalf = "If you shoot for the Moon and miss...";
+const moonQuoteSecondHalf = "You'll land among the stars";
 
 document.addEventListener('DOMContentLoaded', () => {
-	const stars = document.querySelectorAll('.star');
-
-	// delay before lightspeed starts
-	setTimeout(() => {
-	  // Start animation
-	  stars.forEach(star => star.classList.add('traveling'));
-
-	  // After animation + delay, reverse it
-	  setTimeout(() => {
-		stars.forEach(star => {
-		  star.classList.remove('traveling');
-		  star.classList.add('slowing');
-		});
-	  }, 3500); // (3s anim + 0.5s)
-	}, 2500);
-  });
+    initTypewriterEffect(moonQuoteFirstHalf, moonQuoteSecondHalf);
+    
+    setTimeout(() => {
+        isInLightspeed = true;
+        
+        setTimeout(() => {
+            isInLightspeed = false;
+        }, 4500);
+    }, 2500);
+});

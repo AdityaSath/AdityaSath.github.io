@@ -217,7 +217,7 @@
 
 .course-label {
   position: absolute;
-  top: 50%;
+  top: calc(50% - 25px);  /* Changed from 50% */
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 0.75rem;
@@ -226,7 +226,7 @@
   font-weight: 600;
   z-index: 3;
   white-space: nowrap;
-  opacity: 0;
+  opacity: 1;
   transition: all 0.3s ease;
 }
 
@@ -240,7 +240,7 @@
   text-align: center;
   z-index: 3;
   white-space: nowrap;
-  opacity: 0;
+  opacity: 1;  /* Changed from 0 to 1 */
   transition: all 0.3s ease;
 }
 
@@ -324,7 +324,7 @@
 .course-star:hover .course-label {
   color: #ffffff;
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
-  top: calc(50% - 25px);
+  /* top: calc(50% - 25px); */
 }
 
 /* Extracurriculars - Satellites */
