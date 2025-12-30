@@ -40,17 +40,34 @@ function animate() {
     ctx.fillStyle = 'rgba(0, 0, 0, 1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
+    // Define color values
+    const whiteColor = { r: 255, g: 255, b: 255 };
+    const blueColor = { r: 74, g: 158, b: 255 };
+    const maxLength = Math.min(canvas.height, canvas.width);
+    
     stars.forEach(star => {
         if (isInLightspeed) {
             star.targetLength = Math.min(canvas.height, star.length + 20);
-            star.color = { r: 74, g: 158, b: 255 };
         } else {
             star.targetLength = 1;
-            star.color = { r: 255, g: 255, b: 255 };
         }
         
         const easingSpeed = isInLightspeed ? 0.6 : 0.06;  // 0.2 = faster forward, 0.05 = slower reverse
     	star.length += (star.targetLength - star.length) * easingSpeed;
+        
+        // Calculate color progress based on star length
+        // Normalize length to 0-1 range (short = white, long = blue)
+        // Use a smooth transition curve for better visual effect
+        const minLength = 1;
+        const normalizedLength = Math.min((star.length - minLength) / (maxLength - minLength), 1);
+        const colorProgress = Math.max(0, Math.min(1, normalizedLength));
+        
+        // Interpolate color based on progress (0 = white, 1 = blue)
+        star.color = {
+            r: Math.round(whiteColor.r + (blueColor.r - whiteColor.r) * colorProgress),
+            g: Math.round(whiteColor.g + (blueColor.g - whiteColor.g) * colorProgress),
+            b: Math.round(whiteColor.b + (blueColor.b - whiteColor.b) * colorProgress)
+        };
         
         const endX = star.x + Math.cos(star.angle) * star.length;
         const endY = star.y + Math.sin(star.angle) * star.length;
