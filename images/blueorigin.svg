@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <!-- Blue Origin feather mark (simplified, for portfolio display) -->
+  <defs>
+    <linearGradient id="feather" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4A90C8"/>
+      <stop offset="55%" stop-color="#005288"/>
+      <stop offset="100%" stop-color="#003A5D"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#feather)" d="M100 8
+    C78 48, 58 88, 52 128
+    C48 152, 52 176, 68 196
+    C82 212, 100 224, 100 224
+    C100 224, 118 212, 132 196
+    C148 176, 152 152, 148 128
+    C142 88, 122 48, 100 8 Z"/>
+  <path fill="#E8F1F8" opacity="0.35" d="M100 28
+    C88 62, 76 96, 72 128
+    C70 148, 74 166, 86 182
+    C94 192, 100 198, 100 198
+    L100 28 Z"/>
+  <path fill="none" stroke="#B8D4E8" stroke-width="2.5" stroke-linecap="round"
+        d="M100 36 L100 200"/>
+  <path fill="none" stroke="#7BA3C9" stroke-width="1.5" stroke-linecap="round" opacity="0.8"
+        d="M100 70 C88 78, 78 92, 74 110"/>
+  <path fill="none" stroke="#7BA3C9" stroke-width="1.5" stroke-linecap="round" opacity="0.8"
+        d="M100 70 C112 78, 122 92, 126 110"/>
+  <path fill="none" stroke="#7BA3C9" stroke-width="1.5" stroke-linecap="round" opacity="0.7"
+        d="M100 110 C86 118, 76 132, 72 150"/>
+  <path fill="none" stroke="#7BA3C9" stroke-width="1.5" stroke-linecap="round" opacity="0.7"
+        d="M100 110 C114 118, 124 132, 128 150"/>
+  <path fill="none" stroke="#7BA3C9" stroke-width="1.5" stroke-linecap="round" opacity="0.6"
+        d="M100 150 C88 156, 80 166, 76 178"/>
+  <path fill="none" stroke="#7BA3C9" stroke-width="1.5" stroke-linecap="round" opacity="0.6"
+        d="M100 150 C112 156, 120 166, 124 178"/>
+</svg>
