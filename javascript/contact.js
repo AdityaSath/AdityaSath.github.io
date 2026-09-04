@@ -130,8 +130,7 @@ function initTerminal() {
   const output = document.getElementById('terminalOutput');
   if (!output) return;
   
-  // Path to your resume PDF - UPDATE THIS PATH
-  const resumePath = '../Aditya_Sathishkumar_Resume.pdf';
+  const resumePath = '../Aditya_Sathishkumar_Master_Resume.pdf';
   
   const lines = [
     { type: 'prompt', text: '> ', delay: 50 },
@@ -201,7 +200,7 @@ function initTerminal() {
             <span class="terminal-label">${line.label}</span>
             <div class="resume-actions">
               <a href="${resumePath}" class="resume-btn" target="_blank" rel="noopener noreferrer">[VIEW]</a>
-              <a href="${resumePath}" class="resume-btn" download="Aditya_Sathish_Resume.pdf">[DOWNLOAD]</a>
+              <a href="${resumePath}" class="resume-btn" download="Aditya_Sathishkumar_Master_Resume.pdf">[DOWNLOAD]</a>
             </div>
           `;
           break;
