@@ -1,0 +1,87 @@
+# about.html
+About - Personal Portfolio Home About Experience Projects Academics Skills Contact Don't tell me the sky's the limit when there are footprints on the Moon Hey there, Traveler! I'm | I'm from MA, and attend UMass Amherst for Computer Science. I love working at the cross section of industries, technology, and business where research, engineering, and collaboration pave the way for cutting edge discovery. Particularly, I'm interested in software that controls physical assets. This passion has led to products that operate under the most challenging domains and constraints. My work is used everywhere — land, air, and space — where failure is not an option. With flight-critical and crewed systems at stake, I develop with safety, redundancy, and performance in mind. In my free time, I love staying active. I've played soccer for 16 years and enjoy going on runs. I'm also the captain for UMass Fusion Dance, bringing a new team to national competitions. For most of my life, I've been lucky to travel and I love taking trips with friends and family. If you don't see me outside, you can find me watching my Boston Sports Franchises beating your favorite teams! Career Interests 🚀 Aerospace/Space 🛡️ Defense 🤖 Autonomy 🧭 Guidance, Navigation, & Control 💾 Embedded Systems 🦾 Robotics 🔌 Hardware-Software Integration Software Interests 🧠 AI / Machine Learning 🧩 Object-Oriented Design 🪐 Simulations 🕶️ Augmented / Virtual Reality ⚙️ Hardware Control
+
+# academics.html
+Academics - Personal Portfolio Home About Experience Projects Academics Skills Contact Do not go gentle into that goodnight, rage, rage, rage against the dying of the light University of Massachusetts Amherst Bachelor of Science in Computer Science Junior GPA 3.84 / 4.00 Honors & Awards Amy Mick Soccer Scholarship Dean's List (3/3) Honors College Coursework OOP Python/Java Data Structures Java C Programming C Prog Methodology JS/TS Computation Calc II Calc III Statistics Linear Algebra Physics I Extracurriculars Mass Mirchi Lead Choreographer UMass Robotics Software Engineer ML Club Member CicSoft Member SASA Member
+
+# contact.html
+Contact - Personal Portfolio Home About Experience Projects Academics Skills Contact Ad Astra Per Aspera contact_info.exe
+
+# experience.html
+Experience - Personal Portfolio Home About Experience Projects Academics Skills Contact Adventure is not in the guidebook, and beauty is not on the map Blue Origin Role: Software Engineer Intern Dates: 04/01/2026 - Current Location: Seattle, Washington Mission: New Glenn Architected real-time performance monitoring system for hardware-in-the-loop (HIL) lab in C++ and Python Engineered event-driven metrics pipeline using RabbitMQ, async HTTP, UDP, and multithreading Modularized metrics capture with publish-subscribe and adapter patterns, decoupling metrics from Datadog to eliminate vendor lock-in and enable hot-swappable backends at runtime Crafted fault-tolerant infrastructure with automated retries, backoff, error isolation, thread-safe caching, and CPU core partitioning, preventing monitoring failures from disrupting critical HIL execution Automated HIL investigation with anomaly detection, notifications, and AI-assisted RCA via telemetry insight Owned design through iterative delivery, integrating GitLab, Docker, Ansible, and CI/CD into existing workflows New Glenn carries the vision of millions of people living and working in space. I build the observability that keeps hardware-in-the-loop testing trustworthy — so every metric, alert, and insight strengthens the systems that lift humanity beyond Earth, Gradatim Ferociter. Hot-swappable metrics backends at runtime ↓ Vendor lock-in via adapter-based observability Fault-isolated monitoring from critical HIL execution Automated anomaly detection & AI-assisted RCA NASA Role: Software Engineer Intern Dates: 08/25/2025 - 12/12/2025 Location: Kennedy Space Center - Merritt Island, Florida Mission: Artemis Architectured modular Python automation framework validating flight-critical systems to ensure deterministic behavior across mission-critical avionics Developed distributed verification architecture leveraging MySQL-backed persistence layers and RESTful microservices, optimizing cross-system validation Engineered high-throughput data ingestion pipeline to convert legacy XML test artifacts into normalized telemetry datasets, accelerating fault localization Implemented Linux-native data transformation workflows, enabling rapid synthesis of test output into analyzable signal datasets for anomaly detection Extended Jama Connect integration to construct end-to-end traceability graphs linking core systems, tests, and verification artifacts for audit-grade transparency The Artemis missions bring humanity one step closer to unlocking the secrets of the Universe, by establishing a permanent human presence on the Moon and researching the long term effects of life in space. My code safeguards the systems propelling humanity's return to the Moon. Through automation, validation, and traceability, I help transform complexity into confidence — so that every launch brings us closer to the stars. ~10,000 flight critical requirements verified 300+ core systems validated ↑ Automation 15% HII Role: Software Engineer Co-op Dates: 01/06/2025 - 07/31/2025 Location: Wright Patterson Air Force Base - Dayton, Ohio Mission: Autonomous Aerial Refueling Developed real-time training and validation pipelines for convolutional neural networks used in autonomous aerial refueling perception and control loops Designed and integrated physical and synthetic data capture systems, leveraging a 1,200 lb-in torque aircraft tracker and high-fidelity simulation environments Optimized gimbal control algorithms with Boost and Dear ImGui, implementing rate-limiting logic, redundant fail-safes, and adaptive motion constraints Engineered custom software-defined radio receiver stack to intercept and decode aircraft telemetry, employing C-based demodulation, binary parsing, and Boost.Asio for real-time RF data networking Extended Chrono timekeeping library by implementing C-to-C++ API bridge, increasing timestamping precision and reducing timing overlap Leveraged concurrent multithreading for high-frequency data capture and pre-processing, offloading compute-intensive routines from the primary control engine I build the intelligence that lets aircraft refuel themselves — extending their reach, preserving lives, and redefining what it means to fly autonomously. ↓ Training Preparation Time 80% 10 Gbps Processing Speed ↓ Latency 35% ↑ Timekeeping Precision 6 Significant Figures ↓ Data Overlap 20% ↑ 5x Data Generation rate ↑ 2x Data Diversity UMass Robotics Role: Software Engineer Dates: 09/05/2023 - 11/05/2023 Location: Amherst, Massachusetts Mission: NASA Lunabotics Challenge Designed computer vision navigation system for ROS-based lunar rovers Leveraged asynchronous messaging channels for visual and inertial sensor fusion and fault tolerance Applied stereoscopic sensing system to improve depth estimates Employed image processing with OpenCV to reduce system execution time and resource consumption Helping my team build a rover and compete at the NASA Lunabotics Laboratory ↓ Depth Error 20% ↑ 2x Fault Tolerance ↓ Resource Consumption 25% ↓ Execution Time 25% Cape & Cowl Consulting Role: Data Intern Dates: 07/01/2023 - 09/01/2023 Location: Chicago, Illnois Analyzed market data to inform new sales engine for consulting clients Used competitor analysis, paid and organic advertising, and Artificial Intelligence to boost client outreach Led final pitch to stakeholders, delivering roadmap to convert data into dollars Building a client outreach funnel ↑ Client Outreach 40% Northeastern University Role: Research Assistant Dates: 06/20/2022 - 12/01/2022 Location: Boston, Massachusetts Configured real-world testing environment for Hierarchically Architectured All-Inorganic Passive Cooling Metapaper Modeled environment in CAD for prototyping Analyzed solar irradiance and heat maps with Ansys Thermal and delivered data to researchers for proof of concept The energy demands of the world are ever-growing. My work analyzing the capabilities of passive cooling technology will help keep spaces cooler without using electricity, keeping our planet greener. ↑ Prototype Validaity 30%
+
+# index.html
+Personal Portfolio Home About Experience Projects Academics Skills Contact If you shoot for the Moon and Miss, you'll land among the stars Press enter to toggle lightspeed
+
+# projects.html
+Projects - Personal Portfolio Home About Experience Projects Academics Skills Contact We are all children of the Universe, we are all Stardust Swarm-Hunt Architected a Python multi-agent pursuit environment modeling decentralized swarm intelligence for predator-prey hunting with PettingZoo Parallel API and Gymnasium spaces Designed multi-agent reinforcement learning pipelines with AgileRL MATD3, TorchRL, and VMAS, training predator drones for coordinated pursuit, surrounding, and capture Implemented distance-based combo capture logic, team sensing, and reward shaping to encourage collaborative hunting over naive distance-minimizing pursuit Engineered continuous 2D physics simulation with scripted prey tactics, obstacle hiding, and spatial sensing for emergent swarm hunting behavior Boids Simulation Engineered high-performance flocking simulation in Python and Pygame, implementing Craig Reynolds’ Boids algorithm, achieving 60 FPS performance for 500+ autonomous agents Optimized neighbor-lookup complexity with Uniform Grid Spatial Partitioning, reducing per-frame distance calculations by 90% Implemented custom steering behaviors (alignment, cohesion, separation) and predator avoidance, utilizing Vector math and Euler integration for fluid motion Developed stateless physics engine with clean separation of concerns between data-only objects and pure behavior functions Obsidian Sync Automated version syncing amongst my notes on different devices using Python, eliminating version disparity entirely Logged and wrote version history to GitHub via git Enabled MacOS and Windows-specific push notifications with Automator, TKinter, and Toast My JobScraper Built career automation tool using Python to webscrape career pages and find jobs tailored to applicant's skillset, reducing application time 50% Webscraped using BeautifulSoup to parse website HTML files, recognize patterns in job postings, and explore listing contents, compiling 2,000+ openings Paginated using Selenium to load more positions, automate page navigation, and simulate user events to crawl through websites University Weather Developed app backend to fetch weather information for universities across the United States, allowing geographic searching for 4,000+ schools Chained API queries for university lookup, geographic locating, and weather servicing with asynchronous call using JavaScript and requests Adopted test-driven development strategy using Jest for unit, integration, and mock testing, ensuring graceful error recovery and propogation across application Collaborated using Git and Github for version control, ensuring best industry standard practices for clean and maintainable code World Pandemic Programmed algorithm with Python to analyze conditions for virus spread and bacteria growth Using these conditions, the algorithm would predict the country of which the next pandemic was most likely to arise Drunk Driving Sensor Engineered sensory system to detect if a motorized vehicle operator is driving while under the influence of alcohol Created prototype of sensory system which collects various biological signatures and algorithm to analyze collected data for Hopkinton High School Science Fair
+
+# skills.html
+Skills - Personal Portfolio Home About Experience Projects Academics Skills Contact Some look at things and ask why, others dream and think why not Technical Skills
+
+# Content originally rendered by JavaScript
+{
+  "skills": {
+    "Languages": [
+      "C++",
+      "C",
+      "Python",
+      "Java",
+      "JavaScript",
+      "TypeScript",
+      "HTML",
+      "CSS"
+    ],
+    "Libraries": [
+      "OpenGL",
+      "OpenCV",
+      "Boost",
+      "Requests",
+      "Chrono",
+      "BeautifulSoup",
+      "Selenium"
+    ],
+    "Frameworks": [
+      "Dear ImGui",
+      "JUnit",
+      "Jest",
+      "GTest"
+    ],
+    "Technologies": [
+      "Git",
+      "Windows",
+      "Linux",
+      "Github",
+      "Gitlab",
+      "Visual Studio",
+      "Microsoft Office",
+      "Jama",
+      "Wireshark",
+      "Putty"
+    ],
+    "Other": [
+      "Object-Oriented Design",
+      "Computer Vision",
+      "Version Control",
+      "Embedded Systems",
+      "Controls",
+      "Data Pipelines",
+      "System Verification",
+      "Communication",
+      "Collaboration",
+      "Machine Learning",
+      "Testing",
+      "Integration",
+      "Simulation",
+      "API (REST)",
+      "Networking",
+      "Agile"
+    ]
+  },
+  "contact": {
+    "email": "adityasathishkumar5@gmail.com",
+    "github": "https://github.com/AdityaSath",
+    "linkedin": "https://www.linkedin.com/in/adityasathish/",
+    "resume": "Aditya_Sathishkumar_Master_Resume.pdf"
+  }
+}

@@ -33,11 +33,25 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Build and validate portfolio
+        run: |
+          python3 scripts/build.py
+          python3 scripts/check-static.py
+      - name: Prepare public site
+        run: |
+          mkdir -p _site/css _site/javascript
+          cp index.html _site/
+          cp -R html images media _site/
+          cp css/site.css _site/css/
+          cp css/plume.css _site/css/
+          cp javascript/site.js _site/javascript/
+          cp javascript/hero-video.js _site/javascript/
+          cp Aditya_Sathishkumar_Master_Resume.pdf _site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Publish the site; keep content archives and tooling in the repository.
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

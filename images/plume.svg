@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="flame" x1="120" y1="580" x2="1440" y2="580" gradientUnits="userSpaceOnUse"><stop stop-color="#a54822" stop-opacity="0"/><stop offset=".36" stop-color="#dd7735" stop-opacity=".25"/><stop offset=".7" stop-color="#e49d60" stop-opacity=".7"/><stop offset=".94" stop-color="#ffe0b1"/><stop offset="1" stop-color="#fcf7e9"/></linearGradient>
+    <linearGradient id="core" x1="400" y1="590" x2="1440" y2="590" gradientUnits="userSpaceOnUse"><stop stop-color="#c9693b" stop-opacity="0"/><stop offset=".6" stop-color="#ffd0a0" stop-opacity=".65"/><stop offset="1" stop-color="white"/></linearGradient>
+    <linearGradient id="metal" x1="1490" y1="535" x2="1490" y2="650" gradientUnits="userSpaceOnUse"><stop stop-color="#62666c"/><stop offset=".2" stop-color="#191d21"/><stop offset=".45" stop-color="#080a0b"/><stop offset=".8" stop-color="#31343a"/><stop offset="1" stop-color="#bda08a"/></linearGradient>
+    <radialGradient id="light"><stop stop-color="#d6773e" stop-opacity=".21"/><stop offset="1" stop-color="#d6773e" stop-opacity="0"/></radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="30"/></filter><filter id="glow"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <path fill="#070909" d="M0 0h1600v900H0z"/>
+  <ellipse cx="1030" cy="590" rx="750" ry="350" fill="url(#light)"/>
+  <path d="M1440 568C1080 555 480 412-140 480L-140 775C500 700 1010 630 1440 616Z" fill="url(#flame)" filter="url(#soft)"/>
+  <path d="M1440 576C1100 575 680 535 70 571L-50 674C660 637 1100 608 1440 607Z" fill="url(#flame)" filter="url(#glow)"/>
+  <path d="M1440 580C1160 580 880 565 370 593C880 618 1220 597 1440 600Z" fill="url(#core)" filter="url(#glow)"/>
+  <g fill="#ffe5bf" filter="url(#glow)"><path d="m1407 590-50-12-58 12 58 12z"/><path opacity=".8" d="m1262 590-56-16-62 16 62 16z"/><path opacity=".5" d="m1091 590-59-21-74 21 74 21z"/><path opacity=".25" d="m915 590-73-26-77 26 77 26z"/></g>
+  <path d="M1440 552 1504 559 1585 571 1650 571V615H1585L1504 625 1440 632Z" fill="url(#metal)" stroke="#555352"/>
+  <path d="M1464 555V628M1487 557V626M1510 560V624M1540 565V620" stroke="#d2b69b" stroke-opacity=".13"/>
+  <ellipse cx="1440" cy="592" rx="8" ry="40" fill="#625248" stroke="#e1bd98"/><ellipse cx="1438" cy="592" rx="4" ry="32" fill="#fff3d8" filter="url(#glow)"/>
+</svg>
