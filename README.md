@@ -1,6 +1,6 @@
 # Aditya Sathishkumar — Portfolio
 
-A static aerospace portfolio with a rocket plume animation, decoding text, and interactive illustrations of multi-agent pursuit and flocking. No client framework, package installation, external font request, or build dependency is required for the website.
+A static aerospace portfolio with a static rocket launch cover, decoding text, and interactive illustrations of multi-agent pursuit and flocking. No client framework, package installation, external font request, or build dependency is required for the website.
 
 The homepage follows this order: **Landing → About → Experience → Projects → Skills → Contact**. Its navigation follows the same order and jumps directly to the corresponding homepage sections.
 
@@ -18,8 +18,7 @@ Open **http://127.0.0.1:4173/**. Both the root and the original `/html/index.htm
 - `scripts/build.py` contains the page templates, homepage summaries, and project introductions.
 - `css/site.css` controls the shared visual design and responsive layouts.
 - `javascript/site.js` adds text decoding, mobile navigation, and illustrative project previews.
-- `javascript/hero-video.js` manages the landing-page video; `css/plume.css` defines its layout. `images/plume-poster.jpg` is the still fallback for reduced motion, unavailable playback, and disabled JavaScript.
-- `media/rocket-plume.mp4` is the user-supplied rocket plume video, prepared for streaming without re-encoding. The former procedural artwork remains in `javascript/plume.js` and `images/plume.svg` for reference and is not used by the landing page.
+- `css/plume.css` defines the full-window landing layout; `images/launch.jpg` is its static rocket launch photograph. Previous video assets and preparation tools remain available for reference.
 
 After changing the content or templates, regenerate the checked-in HTML:
 
@@ -46,9 +45,9 @@ python3 -m zipfile -e archive/iteration-01-2026-09-08.zip /tmp/portfolio-iterati
 python3 -m http.server 4174 --bind 127.0.0.1 --directory /tmp/portfolio-iteration-01
 ```
 
-The active site is **iteration 2**, with one video scene and the revised information order.
+The active site is **iteration 2**, with a static launch cover and the revised information order.
 
-## Landing-page video
+## Previous landing-page video (inactive)
 
 Source provided by the user: `kling_20260910_VIDEO_Static_cam_357_0.mp4` (1920 × 1080, approximately 5 seconds, 24 fps, H.264 8-bit 4:2:0). The original source file is unchanged.
 
@@ -60,7 +59,7 @@ python3 scripts/prepare-video.py /path/to/kling_20260910_VIDEO_Static_cam_357_0.
 
 ## Interaction and accessibility
 
-- A single muted, inline animation loops with the plume flowing right to left. It starts one second after the page loads and fades in over 0.6 seconds. The scene fills the landing viewport beneath the navigation, with the nozzle’s right edge anchored to the screen edge. Responsive framing anchors the video’s right edge and preserves its aspect ratio; portrait screens show a closer view of the nozzle and plume. Playback pauses offscreen and in hidden tabs; a reduced-motion visit displays the poster without loading the MP4.
+- A static rocket launch photograph fills the landing viewport beneath the navigation. It is preloaded, remains visible without JavaScript, and uses responsive cropping plus a dark gradient to preserve text readability. The landing page does not load a video.
 - Text decodes on entry, hover, or keyboard focus; screen readers receive stable text.
 - Pointer movement influences the illustrative project previews. They are browser visualizations, not the original Python models or measured project results.
 - Experience rows expand with native keyboard-accessible disclosures.
@@ -76,10 +75,10 @@ node --check javascript/hero-video.js
 node scripts/check-browser.mjs
 ```
 
-The browser check requires a running preview server, Node 22+, and Chrome. It uses Chrome DevTools directly, with no npm dependencies. On macOS it finds Chrome in `/Applications`; set `CHROME_PATH` elsewhere. Set `PREVIEW_URL` to check another local URL. It checks every page at desktop and mobile sizes, narrow/tablet reflow, disclosures, homepage section order, video playback and offscreen pausing, mobile navigation, reduced motion, saved motion preferences, JavaScript-disabled content and artwork, runtime errors, and HTTP failures. Screenshots and its report are saved to a temporary directory printed on completion.
+The browser check requires a running preview server, Node 22+, and Chrome. It uses Chrome DevTools directly, with no npm dependencies. On macOS it finds Chrome in `/Applications`; set `CHROME_PATH` elsewhere. Set `PREVIEW_URL` to check another local URL. It checks every page at desktop and mobile sizes, narrow/tablet reflow, disclosures, homepage section order, the static launch cover and absence of video, mobile navigation, reduced motion, saved motion preferences, JavaScript-disabled content and artwork, runtime errors, and HTTP failures. Screenshots and its report are saved to a temporary directory printed on completion.
 
 ## Deployment
 
-The existing GitHub Pages workflow still deploys on pushes to `master` or manual runs. It regenerates the pages, validates local links and archived checksums, then packages only the site pages, current styles/scripts, images, video, and résumé. Archives, source data, tooling, and unused legacy styles/scripts are excluded from the published package.
+The existing GitHub Pages workflow still deploys on pushes to `master` or manual runs. It regenerates the pages, validates local links and archived checksums, then packages only the site pages, current styles/scripts, images, retained video assets, and résumé. Archives, source data, tooling, and unused legacy styles/scripts are excluded from the published package.
 
 Building or previewing locally does not publish the site.

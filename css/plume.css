@@ -1,4 +1,4 @@
-/* One cinematic video scene with a quiet, readable introduction. */
+/* A full-window rocket launch photograph with a readable introduction. */
 .plume-hero {
   height: calc(100svh - 88px);
   min-height: 0;
@@ -9,8 +9,7 @@
   border-bottom: 1px solid #ffffff0a;
 }
 .plume-visual,
-.hero-video,
-.plume-fallback {
+.hero-image {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -19,13 +18,8 @@
 }
 .plume-visual {
   z-index: -1;
-  container-type: size;
   overflow: hidden;
-  opacity: 1;
-  transition: opacity 600ms ease;
-  mix-blend-mode: screen;
 }
-.video-pending .plume-visual { opacity: 0; transition: none; }
 .plume-hero::after {
   content: '';
   position: absolute;
@@ -37,21 +31,7 @@
 .plume-hero .hero-content,
 .plume-hero .hero-bottom { z-index: 1; }
 .hero-title-scene { position: relative; isolation: isolate; width: fit-content; max-width: 100%; }
-.plume-fallback,
-.hero-video {
-  /* This clip already reaches the right edge; cover the hero and anchor
-     the cropped frame to that edge without stretching it. */
-  inset: 50% 0 auto auto;
-  width: max(100%, 193.94cqh);
-  height: auto;
-  max-width: none;
-  aspect-ratio: 64 / 33;
-  transform: translateY(-50%);
-  object-fit: contain;
-}
-.hero-video { opacity: 0; }
-.video-ready .hero-video { opacity: 1; }
-.video-ready .plume-fallback { visibility: hidden; }
+.hero-image { object-fit: cover; object-position: center; }
 .plume-hero .hero-content {
   position: absolute;
   top: 15%;
@@ -106,18 +86,15 @@
 @media (max-width: 760px) {
   .plume-hero { height: calc(100svh - 74px); }
   .plume-hero .hero-content { top: 18%; }
-  .plume-hero h1 { font-size: clamp(49px, 11.3vw, 82px); }
+  .plume-hero h1 { font-size: clamp(28px, 10vw, 76px); }
   .plume-hero .hero-content > .eyebrow { font-size: 9px; margin-bottom: 23px; }
   .plume-hero .hero-bottom { bottom: 20px; align-items: flex-end; }
   .hero-byline { max-width: 165px; font-size: 8px; line-height: 1.8; }
   .scroll-cue { font-size: 8px; gap: 13px; }
   .home .about-preview { padding-block: 65px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .plume-visual { transition: none; }
-}
 @media (max-width: 380px) {
-  .plume-hero h1 { font-size: 47px; }
+  .plume-hero h1 { font-size: 10vw; }
   .hero-byline { max-width: 140px; }
   .scroll-cue { gap: 9px; }
 }

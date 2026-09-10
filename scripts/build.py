@@ -43,8 +43,7 @@ def shell(title, body, prefix='../', active='', home=False):
 <title>{esc(title)} · Aditya Sathishkumar</title><link rel="icon" href="{prefix}images/mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{prefix}css/site.css"><script src="{prefix}javascript/site.js" defer></script>
 {'<link rel="stylesheet" href="'+prefix+'css/plume.css">' if home else ''}
-{'<script src="'+prefix+'javascript/hero-video.js" defer></script>' if home else ''}
-{'<link rel="preload" as="image" href="'+prefix+'images/plume-poster.jpg">' if home else ''}</head>
+{'<link rel="preload" as="image" href="'+prefix+'images/launch.jpg">' if home else ''}</head>
 <body class="{'home' if home else 'inner-page'}"><a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><a class="brand" href="{h}index.html" aria-label="Aditya Sathishkumar home">{MARK}<span>ADITYA<br>SATHISHKUMAR<span class="brand-dot">*</span></span></a>
 <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">+</span></button>
@@ -77,7 +76,7 @@ def experience_rows(limit=None):
         'Simulation and experimental validation of passive cooling materials.',
     ]
     for i,e in enumerate(D['experience'][:limit]):
-        dates=e['dates'].replace('04/01/2026 - Current','APR 2026 — PRESENT').replace('08/25/2025 - 12/12/2025','AUG — DEC 2025').replace('01/06/2025 - 07/31/2025','JAN — JUL 2025')
+        dates=e['dates'].replace('08/25/2025 - 12/12/2025','AUG — DEC 2025').replace('01/06/2025 - 07/31/2025','JAN — JUL 2025')
         out.append(f'''<details class="experience-row"><summary><span class="experience-index">0{i+1}</span><div class="experience-company"><h3>{esc(e['company'])}</h3><span>{esc(e['role'])}</span></div><div class="experience-summary"><span class="eyebrow">{esc(e.get('mission', 'RESEARCH & ENGINEERING'))}</span><p>{summaries[i]}</p></div><div class="experience-date"><span>{esc(dates)}</span><span class="expand-icon" aria-hidden="true">+</span></div></summary><div class="experience-detail"><div><span class="eyebrow">{esc(e['location'])}</span><p>{esc(e['impact'])}</p><ul class="impact-list">{''.join('<li>'+esc(x)+'</li>' for x in e['metrics'])}</ul></div><ul class="prose-list">{''.join('<li>'+esc(x)+'</li>' for x in e['bullets'])}</ul></div></details>''')
     return ''.join(out)
 
@@ -87,9 +86,9 @@ def contact_block(prefix='../'):
 def home(prefix):
     h=prefix+'html/'
     return f'''<section class="hero plume-hero" id="landing" aria-labelledby="hero-title">
-<div class="plume-visual" aria-hidden="true"><img class="plume-fallback" src="{prefix}images/plume-poster.jpg" alt="" width="1920" height="990" fetchpriority="high"><video class="hero-video" data-src="{prefix}media/rocket-plume.mp4" poster="{prefix}images/plume-poster.jpg" width="1920" height="990" muted loop playsinline preload="none" tabindex="-1"></video></div>
+<div class="plume-visual" aria-hidden="true"><img class="hero-image" src="{prefix}images/launch.jpg" alt="" width="3000" height="2000" fetchpriority="high"></div>
 <div class="hero-content"><p class="eyebrow">ADITYA SATHISHKUMAR</p><div class="hero-title-scene">
-<h1 id="hero-title">BEYOND THE<br><span data-decode data-intro>HORIZON.</span></h1></div></div>
+<h1 id="hero-title"><span data-decode data-intro>ENGINEERING</span><br><span data-decode data-intro>BEYOND THE</span><br><span data-decode data-intro>HORIZON</span></h1></div></div>
 <div class="hero-bottom"><p class="hero-byline">SOFTWARE FOR LAND, AIR & SPACE.</p><a class="scroll-cue" href="#about"><span class="scroll-label">MEET ADITYA</span><span aria-hidden="true">↓</span></a></div>
 </section>
 <section class="about-preview wrap" id="about"><div class="about-image"><img src="{prefix}images/spacewalk4.webp" alt="An astronaut above Earth's blue horizon" width="5735" height="5735" loading="lazy"><span class="image-caption">PERSPECTIVE / EVERYTHING STARTS WITH CURIOSITY</span></div><div class="about-preview-copy">{label('01','ABOUT ME')}<h2>GROUNDED.<br>LOOKING UP.</h2><p>I'm Aditya, a Computer Science student at UMass Amherst. I'm drawn to the places where software meets the physical world, and where a good question can become something real.</p><p>Outside engineering: soccer, running, captaining UMass Fusion Dance, and finding the next place to explore.</p>{button(h+'about.html','More about me',True)}</div></section>

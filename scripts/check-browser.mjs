@@ -43,19 +43,6 @@ try {
   const { targetId } = await call('Target.createTarget', { url: 'about:blank' });
   ({ sessionId } = await call('Target.attachToTarget', { targetId, flatten: true }));
   await call('Page.enable', {}, sessionId); await call('Runtime.enable', {}, sessionId); await call('Network.enable', {}, sessionId);
-  await call('Page.addScriptToEvaluateOnNewDocument', { source: `
-    window.addEventListener('load', () => {
-      window.heroLoadTime = performance.now();
-      setTimeout(() => {
-        const video = document.querySelector('.hero-video');
-        const visual = document.querySelector('.plume-visual');
-        window.heroWaited = !!video && video.paused && getComputedStyle(visual).opacity === '0';
-      }, 500);
-    });
-    document.addEventListener('playing', event => {
-      if (event.target.matches('.hero-video') && !window.heroPlayTime) window.heroPlayTime = performance.now();
-    }, true);
-  ` }, sessionId);
   const pages = ['/', '/html/index.html', '/html/projects.html', '/html/experience.html', '/html/about.html', '/html/academics.html', '/html/skills.html', '/html/contact.html', '/html/project-swarm-hunt.html', '/html/project-boids-simulation.html', '/html/project-obsidian-sync.html', '/html/project-my-jobscraper.html', '/html/project-university-weather.html', '/html/project-world-pandemic.html', '/html/project-drunk-driving-sensor.html'];
   for (const width of [1440, 390]) {
     await call('Emulation.setDeviceMetricsOverride', { width, height: 1000, deviceScaleFactor: 1, mobile: width < 761 }, sessionId);
@@ -65,25 +52,17 @@ try {
       check(state.h1 === 1 && state.main && !state.overflow && state.images.length === 0, `${width}px ${page}: heading, content, images, no horizontal overflow`);
       if (page === '/') {
         await pause(1200); await shot(`home-${width}`);
-        check(await evaluate(`document.querySelectorAll('.plume-visual').length===1 && !document.querySelector('[data-scene]') && document.querySelector('.plume-hero').classList.contains('video-ready')`), `${width}px single video scene plays`);
-        const entrance = await evaluate(`({hidden:window.heroWaited, delay:window.heroPlayTime-window.heroLoadTime})`);
-        check(entrance.hidden && entrance.delay >= 1000, `${width}px smoke stays hidden and waits one second after load (${JSON.stringify(entrance)})`);
         check(await evaluate(`(() => {
-          const visual = document.querySelector('.plume-visual').getBoundingClientRect();
+          const image = document.querySelector('.hero-image');
+          const rect = image.getBoundingClientRect();
           const hero = document.querySelector('.plume-hero').getBoundingClientRect();
-          const video = document.querySelector('.hero-video').getBoundingClientRect();
-          const nozzleRight = video.right;
-          return Math.abs(visual.x)<1 && Math.abs(visual.width-innerWidth)<1 &&
-            Math.abs(visual.height-hero.height)<2 && Math.abs(hero.bottom-innerHeight)<2 &&
-            Math.abs(nozzleRight-innerWidth)<2 && video.height>=visual.height-1 &&
-            video.x<=0 && Math.abs(video.width/video.height-64/33)<.01;
-        })()`), `${width}px video fills landing viewport with nozzle aligned to right edge`);
+          return image.complete && image.naturalWidth===3000 && image.src.endsWith('/images/launch.jpg') &&
+            !document.querySelector('video') && !document.querySelector('script[src*="hero-video"]') &&
+            Math.abs(rect.width-innerWidth)<1 && Math.abs(rect.height-hero.height)<2 &&
+            Math.abs(hero.bottom-innerHeight)<2;
+        })()`), `${width}px static rocket launch cover fills landing viewport without video`);
         check(await evaluate(`JSON.stringify([...document.querySelectorAll('main > section')].map(section=>section.id))===JSON.stringify(['landing','about','experience','work','skills','contact'])`), `${width}px requested homepage section order`);
-        const firstFrame = await evaluate(`document.querySelector('.hero-video').currentTime`);
-        await pause(350);
-        check(firstFrame !== await evaluate(`document.querySelector('.hero-video').currentTime`), `${width}px video advances`);
         await evaluate(`document.querySelector('#about').scrollIntoView({behavior:'instant'})`); await pause(700); await shot(`about-${width}`);
-        check(await evaluate(`document.querySelector('.hero-video').paused`), `${width}px offscreen video pauses`);
         await evaluate(`document.querySelector('#work').scrollIntoView({behavior:'instant'})`); await pause(700); await shot(`work-${width}`);
         if (width === 1440) {
           await evaluate(`document.querySelector('#experience').scrollIntoView({behavior:'instant'})`); await pause(300); await shot('experience-1440');
@@ -106,25 +85,19 @@ try {
   await call('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] }, sessionId);
   await call('Page.navigate', { url: base + '/' }, sessionId); await pause(1100);
   check(await evaluate(`document.body.classList.contains('motion-paused') && !document.querySelector('.decode-active') && document.querySelector('.motion-toggle').disabled`), 'Reduced motion disables decoding and animation controls');
-  check(await evaluate(`!document.querySelector('.hero-video').hasAttribute('src') && !document.querySelector('.video-ready')`), 'Reduced-motion visit uses the poster without loading video');
-  const reducedFrame = await evaluate(`document.querySelector('.hero-video').currentTime`);
-  await pause(200);
-  check(reducedFrame === await evaluate(`document.querySelector('.hero-video').currentTime`), 'Reduced-motion video remains paused');
+  check(await evaluate(`document.querySelector('.hero-image').naturalWidth>0 && !document.querySelector('video')`), 'Reduced-motion visit displays the static launch cover');
   await call('Emulation.setEmulatedMedia', { features: [] }, sessionId);
   await evaluate(`new Promise(resolve => { function ready() { if (!document.querySelector('.motion-toggle').disabled) resolve(true); else requestAnimationFrame(ready); } ready(); })`);
   await evaluate(`document.querySelector('.motion-toggle').click()`);
   check(await evaluate(`document.body.classList.contains('motion-paused') && localStorage.getItem('portfolio-motion')==='paused'`), 'Motion toggle pauses and saves preference');
   await pause(150);
-  const pausedFrame = await evaluate(`document.querySelector('.hero-video').currentTime`);
-  await pause(200);
-  check(pausedFrame === await evaluate(`document.querySelector('.hero-video').currentTime`), 'Manual pause freezes video');
   await call('Page.reload', {}, sessionId); await pause(650);
   check(await evaluate(`document.body.classList.contains('motion-paused')`), 'Motion preference survives navigation');
   await evaluate(`document.querySelector('.motion-toggle').click()`);
   await call('Emulation.setScriptExecutionDisabled', { value: true }, sessionId); await call('Page.reload', {}, sessionId); await pause(700);
   check(await evaluate(`document.querySelectorAll('.project-card').length===3 && document.querySelector('h1').textContent.includes('HORIZON')`), 'Homepage content exists without JavaScript');
   check(await evaluate(`getComputedStyle(document.querySelector('nav')).display!=='none'`), 'Mobile navigation remains available without JavaScript');
-  check(await evaluate(`getComputedStyle(document.querySelector('.plume-fallback')).visibility==='visible' && document.querySelector('.plume-fallback').naturalWidth>0`), 'Static plume artwork remains available without JavaScript');
+  check(await evaluate(`getComputedStyle(document.querySelector('.hero-image')).visibility==='visible' && document.querySelector('.hero-image').naturalWidth>0`), 'Static launch photograph remains available without JavaScript');
   await call('Emulation.setScriptExecutionDisabled', { value: false }, sessionId);
   for (const width of [320, 768]) {
     await call('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: width < 761 }, sessionId);
